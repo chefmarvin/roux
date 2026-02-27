@@ -25,7 +25,11 @@ function addSharedOptions(cmd: Command): Command {
     .option("-p, --team-map <file>", "Team/person mapping CSV file")
     .option("-t, --temporal-period <days>", "Temporal period in days", parseInt)
     .option("-d, --age-time-now <date>", "Reference date for age analysis (YYYY-MM-DD)")
-    .option("-e, --expression-to-match <regex>", "Regex for message matching");
+    .option("-e, --expression-to-match <regex>", "Regex for message matching")
+    .option("-c, --format <format>", "Input log format: git2 or git", "git2")
+    .option("--after <date>", "Only commits after date (YYYY-MM-DD)")
+    .option("--before <date>", "Only commits before date (YYYY-MM-DD)")
+    .option("--rev <range>", "Git revision range (e.g. v1.0..v2.0)");
 }
 
 // Check if stdin has data (pipe mode)
@@ -62,6 +66,10 @@ for (const name of Object.keys(analyses)) {
         temporalPeriod: opts.temporalPeriod,
         ageTimeNow: opts.ageTimeNow,
         expressionToMatch: opts.expressionToMatch,
+        logFormat: opts.format,
+        after: opts.after,
+        before: opts.before,
+        rev: opts.rev,
       });
       process.stdout.write(output);
     } catch (e: unknown) {

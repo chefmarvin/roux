@@ -10,11 +10,11 @@ export function revisions(
   const result: Record<string, unknown>[] = [];
 
   for (const [entity, mods] of byEntity) {
-    const uniqueRevs = new Set(mods.map((m) => m.rev));
-    if (uniqueRevs.size >= options.minRevs) {
+    const nRevs = mods.length;
+    if (nRevs >= options.minRevs) {
       result.push({
         entity: entity as string,
-        "n-revs": uniqueRevs.size,
+        "n-revs": nRevs,
       });
     }
   }

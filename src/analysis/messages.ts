@@ -12,8 +12,22 @@ export function messages(
     );
   }
 
+  // Entries with message "-" are dash placeholders (format has no real messages)
+  const dashEntries = data.filter((m) => m.message === "-");
+
+  // If ALL entries have dash placeholder messages, the format doesn't support messages
+  if (dashEntries.length > 0 && dashEntries.length === data.length) {
+    throw new Error(
+      "Cannot do a messages analysis without commit messages. " +
+      "The input log format may not include messages."
+    );
+  }
+
+  // Filter out dash placeholders before matching
+  const withMessages = data.filter((m) => m.message && m.message !== "-");
+
   const regex = new RegExp(options.expressionToMatch);
-  const byEntity = groupBy(data, "entity");
+  const byEntity = groupBy(withMessages, "entity");
   const result: Record<string, unknown>[] = [];
 
   for (const [entity, mods] of byEntity) {

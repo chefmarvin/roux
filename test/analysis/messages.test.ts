@@ -47,4 +47,26 @@ describe("messages", () => {
     });
     expect(result).toEqual([]);
   });
+
+  test("throws when all messages are dash placeholder", () => {
+    const data: Modification[] = [
+      { entity: "A", rev: "1", author: "apt", date: "2013-01-01", locAdded: 1, locDeleted: 0, message: "-" },
+      { entity: "B", rev: "2", author: "apt", date: "2013-01-02", locAdded: 1, locDeleted: 0, message: "-" },
+    ];
+    expect(() => messages(data, { ...lowThresholds, expressionToMatch: "change" })).toThrow();
+  });
+
+  test("ignores dash messages, counts real matches", () => {
+    const data: Modification[] = [
+      { entity: "A", rev: "1", author: "apt", date: "2013-01-01", locAdded: 1, locDeleted: 0, message: "-" },
+      { entity: "B", rev: "2", author: "apt", date: "2013-01-02", locAdded: 1, locDeleted: 0, message: "some change message" },
+    ];
+    const result = messages(data, { ...lowThresholds, expressionToMatch: "change" });
+    expect(result).toEqual([{ entity: "B", matches: 1 }]);
+  });
+
+  test("empty dataset returns empty result", () => {
+    const result = messages([], { ...lowThresholds, expressionToMatch: "change" });
+    expect(result).toEqual([]);
+  });
 });

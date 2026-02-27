@@ -11,12 +11,12 @@ export function authors(
 
   for (const [entity, mods] of byEntity) {
     const uniqueAuthors = new Set(mods.map((m) => m.author));
-    const uniqueRevs = new Set(mods.map((m) => m.rev));
-    if (uniqueRevs.size >= options.minRevs) {
+    const nRevs = mods.length;
+    if (nRevs >= options.minRevs) {
       result.push({
         entity: entity as string,
         "n-authors": uniqueAuthors.size,
-        "n-revs": uniqueRevs.size,
+        "n-revs": nRevs,
       });
     }
   }

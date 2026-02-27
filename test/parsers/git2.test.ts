@@ -68,4 +68,22 @@ describe("git2 parser", () => {
     expect(parseGit2Log("")).toEqual([]);
     expect(parseGit2Log("  \n  ")).toEqual([]);
   });
+
+  test("parses optional commit message from extended git2 format", () => {
+    const log = "--abc123--2024-01-15--Author Name--fix: some bug\n1\t0\tsrc/foo.ts\n";
+    const result = parseGit2Log(log);
+    expect(result[0].message).toBe("fix: some bug");
+  });
+
+  test("handles missing message (standard git2 format)", () => {
+    const log = "--abc123--2024-01-15--Author Name\n1\t0\tsrc/foo.ts\n";
+    const result = parseGit2Log(log);
+    expect(result[0].message).toBeUndefined();
+  });
+
+  test("handles message containing double dashes", () => {
+    const log = "--abc123--2024-01-15--Author--msg with -- dashes\n1\t0\tsrc/foo.ts\n";
+    const result = parseGit2Log(log);
+    expect(result[0].message).toBe("msg with -- dashes");
+  });
 });

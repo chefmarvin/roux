@@ -34,7 +34,7 @@ export function churnByEntity(
   const result: Record<string, unknown>[] = [];
 
   for (const [entity, mods] of byEntity) {
-    const commits = mods.length;
+    const commits = new Set(mods.map((m) => m.rev)).size;
     const added = mods.reduce((sum, m) => sum + loc(m.locAdded), 0);
     const deleted = mods.reduce((sum, m) => sum + loc(m.locDeleted), 0);
     result.push({ entity: entity as string, added, deleted, commits });

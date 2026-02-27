@@ -2,6 +2,8 @@ import { describe, test, expect } from "@jest/globals";
 import {
   parseTeamMap,
   applyTeamMapping,
+  parseTeamJSON,
+  parseTeamMarkdown,
 } from "../../src/transforms/team-mapper";
 import type { Modification } from "../../src/parsers/types";
 
@@ -53,5 +55,50 @@ describe("applyTeamMapping", () => {
     const result = applyTeamMapping(data, teamMap);
     expect(result[0].author).toBe("TeamA");
     expect(result[1].author).toBe("charlie");
+  });
+});
+
+describe("parseTeamJSON", () => {
+  test("parses JSON team mapping", () => {
+    const json = JSON.stringify({
+      Alice: "Backend",
+      Bob: "Backend",
+      Charlie: "Frontend",
+    });
+    const map = parseTeamJSON(json);
+    expect(map.size).toBe(3);
+    expect(map.get("Alice")).toBe("Backend");
+    expect(map.get("Charlie")).toBe("Frontend");
+  });
+
+  test("handles empty JSON object", () => {
+    const map = parseTeamJSON("{}");
+    expect(map.size).toBe(0);
+  });
+});
+
+describe("parseTeamMarkdown", () => {
+  test("parses markdown table", () => {
+    const md = [
+      "| author | team |",
+      "|--------|------|",
+      "| Alice | Backend |",
+      "| Bob | Frontend |",
+    ].join("\n");
+    const map = parseTeamMarkdown(md);
+    expect(map.size).toBe(2);
+    expect(map.get("Alice")).toBe("Backend");
+    expect(map.get("Bob")).toBe("Frontend");
+  });
+
+  test("skips header and separator rows", () => {
+    const md = [
+      "| author | team |",
+      "|--------|------|",
+      "| Alice | Backend |",
+    ].join("\n");
+    const map = parseTeamMarkdown(md);
+    expect(map.size).toBe(1);
+    expect(map.get("Alice")).toBe("Backend");
   });
 });

@@ -1,5 +1,5 @@
 import { describe, test, expect } from "@jest/globals";
-import { parseGroupFile, applyGrouping } from "../../src/transforms/grouper";
+import { parseGroupFile, applyGrouping, parseGroupJSON, parseGroupMarkdown } from "../../src/transforms/grouper";
 import type { Modification } from "../../src/parsers/types";
 
 const mod = (entity: string): Modification => ({
@@ -59,5 +59,57 @@ describe("applyGrouping", () => {
     const result = applyGrouping(data, overlapping);
     expect(result).toHaveLength(1);
     expect(result[0].entity).toBe("All");
+  });
+});
+
+describe("parseGroupJSON", () => {
+  test("parses JSON with prefix paths", () => {
+    const json = JSON.stringify({
+      "src/api": "API Layer",
+      "src/ui": "UI Layer",
+    });
+    const specs = parseGroupJSON(json);
+    expect(specs).toHaveLength(2);
+    expect(specs[0].name).toBe("API Layer");
+    expect(specs[0].pattern.test("src/api/handler.ts")).toBe(true);
+    expect(specs[1].name).toBe("UI Layer");
+  });
+
+  test("parses JSON with regex patterns", () => {
+    const json = JSON.stringify({
+      "^src\\/.*Test.*$": "Tests",
+      "src/core": "Core",
+    });
+    const specs = parseGroupJSON(json);
+    expect(specs[0].pattern.test("src/foo/FooTest.cs")).toBe(true);
+    expect(specs[1].pattern.test("src/core/main.ts")).toBe(true);
+  });
+});
+
+describe("parseGroupMarkdown", () => {
+  test("parses markdown table with prefix paths", () => {
+    const md = [
+      "| path | group |",
+      "|------|-------|",
+      "| src/api | API Layer |",
+      "| src/ui | UI Layer |",
+    ].join("\n");
+    const specs = parseGroupMarkdown(md);
+    expect(specs).toHaveLength(2);
+    expect(specs[0].name).toBe("API Layer");
+    expect(specs[0].pattern.test("src/api/handler.ts")).toBe(true);
+  });
+
+  test("parses markdown table with regex patterns", () => {
+    const md = [
+      "| path | group |",
+      "|------|-------|",
+      "| ^src\\/.*Test.*$ | Tests |",
+      "| src/core | Core |",
+    ].join("\n");
+    const specs = parseGroupMarkdown(md);
+    expect(specs).toHaveLength(2);
+    expect(specs[0].pattern.test("src/foo/BarTest.cs")).toBe(true);
+    expect(specs[1].name).toBe("Core");
   });
 });

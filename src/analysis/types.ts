@@ -13,6 +13,7 @@ export interface AnalysisOptions {
   teamMapFile?: string;         // -p flag, path to team CSV
   temporalPeriod?: number;      // -t flag, days in sliding window
   outputFormat?: "csv" | "json"; // -o flag
+  logFormat?: "git2" | "git";    // -c flag, input log format
 }
 
 export const defaultOptions: AnalysisOptions = {

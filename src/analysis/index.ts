@@ -33,7 +33,7 @@ export const analysisHeaders: Record<string, string[]> = {
   "entity-effort": ["entity", "author", "author-revs", "total-revs"],
   fragmentation: ["entity", "fractal-value", "total-revs"],
   communication: ["author", "peer", "shared", "average", "strength"],
-  messages: ["entity", "message-count"],
+  messages: ["entity", "matches"],
   identity: ["author", "rev", "date", "entity", "message", "loc-added", "loc-deleted"],
 };
 

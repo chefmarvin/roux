@@ -85,10 +85,13 @@ export function sumOfCoupling(
   data: Modification[],
   options: AnalysisOptions
 ): Record<string, unknown>[] {
-  const byRevision = entitiesByRevision(data, options.maxChangesetSize);
+  // SOC uses non-deduplicated entities per revision (matches code-maat row-level counting)
+  const byRev = groupBy(data, "rev");
   const soc = new Map<string, number>();
 
-  for (const entities of byRevision.values()) {
+  for (const [, mods] of byRev) {
+    const entities = mods.map((m) => m.entity);
+    if (entities.length > options.maxChangesetSize) continue;
     for (const entity of entities) {
       soc.set(entity, (soc.get(entity) ?? 0) + (entities.length - 1));
     }
