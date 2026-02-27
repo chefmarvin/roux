@@ -98,7 +98,7 @@ npx roux age -r 20
 npx roux coupling --after 2024-01-01 -m 3
 ```
 
-**`soc`** — Sum of coupling per file, identify God files / 每个文件的耦合度总和，识别 God 文件
+**`soc`** — Sum of coupling per file. High soc = "God file" that's coupled to too many others, risky to change / 每个文件的耦合度总和。高 soc = God 文件，与过多文件耦合，改动风险大
 ```bash
 npx roux soc -m 3
 ```
