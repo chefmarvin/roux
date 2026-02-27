@@ -108,6 +108,32 @@ done
 # without commit messages"). Since our test fixtures are git2, we skip this comparison.
 # The messages analysis is unit-tested separately.
 
+# --- JSON output validation ---
+# Verify each analysis produces valid JSON with -o json flag
+ALL_ANALYSES=("${ANALYSES[@]}" "age" "messages")
+JSON_LOG="test/fixtures/code-maat-own.log"
+abs_json_log="$ROUX/$JSON_LOG"
+for analysis in "${ALL_ANALYSES[@]}"; do
+  label="JSON / $analysis"
+  extra_flags=""
+  if [ "$analysis" = "age" ]; then
+    extra_flags="-d 2025-08-01"
+  elif [ "$analysis" = "messages" ]; then
+    extra_flags="-e fix"
+  fi
+
+  json_output=$(cd "$ROUX" && npx tsx src/cli.ts "$analysis" -l "$abs_json_log" -n 1 -m 1 -i 1 -s 1000 -o json $extra_flags 2>/dev/null || echo "ERROR")
+
+  if echo "$json_output" | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const r=JSON.parse(d);if(!Array.isArray(r))throw 1;process.exit(0)}catch(e){process.exit(1)}})" 2>/dev/null; then
+    echo "PASS  $label"
+    PASS=$((PASS + 1))
+  else
+    echo "FAIL  $label"
+    FAIL=$((FAIL + 1))
+    FAILURES+=("$label")
+  fi
+done
+
 echo ""
 echo "================================"
 echo "Results: $PASS passed, $FAIL failed"
