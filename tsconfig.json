@@ -9,7 +9,7 @@
     "rootDir": "src",
     "declaration": true,
     "sourceMap": true,
-    "types": ["bun-types"]
+    "types": ["node", "jest"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "test"]
