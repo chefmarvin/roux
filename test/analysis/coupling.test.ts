@@ -1,4 +1,4 @@
-import { describe, test, expect } from "bun:test";
+import { describe, test, expect } from "@jest/globals";
 import { coupling, sumOfCoupling } from "../../src/analysis/coupling";
 import type { Modification } from "../../src/parsers/types";
 import type { AnalysisOptions } from "../../src/analysis/types";

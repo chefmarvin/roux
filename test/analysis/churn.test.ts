@@ -1,4 +1,4 @@
-import { describe, test, expect } from "bun:test";
+import { describe, test, expect } from "@jest/globals";
 import { absoluteChurn, churnByEntity, churnByAuthor } from "../../src/analysis/churn";
 import type { Modification } from "../../src/parsers/types";
 import type { AnalysisOptions } from "../../src/analysis/types";

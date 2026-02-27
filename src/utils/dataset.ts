@@ -1,8 +1,8 @@
-export function groupBy<T extends Record<string, unknown>>(
+export function groupBy<T>(
   data: T[],
-  key: string
-): Map<unknown, T[]> {
-  const map = new Map<unknown, T[]>();
+  key: keyof T & string
+): Map<T[keyof T], T[]> {
+  const map = new Map<T[keyof T], T[]>();
   for (const item of data) {
     const k = item[key];
     const group = map.get(k);
@@ -15,9 +15,9 @@ export function groupBy<T extends Record<string, unknown>>(
   return map;
 }
 
-export function orderBy<T extends Record<string, unknown>>(
+export function orderBy<T>(
   data: T[],
-  key: string,
+  key: keyof T & string,
   direction: "asc" | "desc" = "desc"
 ): T[] {
   const sorted = [...data];

@@ -1,4 +1,4 @@
-import { describe, test, expect } from "bun:test";
+import { describe, test, expect } from "@jest/globals";
 import { authors } from "../../src/analysis/authors";
 import { vcs, lowThresholds } from "../fixtures/test-data";
 

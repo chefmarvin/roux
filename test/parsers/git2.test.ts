@@ -1,4 +1,4 @@
-import { describe, test, expect } from "bun:test";
+import { describe, test, expect } from "@jest/globals";
 import { parseGit2Log } from "../../src/parsers/git2";
 
 const singleEntry = `--990442e--2013-08-29--Adam Petersen
