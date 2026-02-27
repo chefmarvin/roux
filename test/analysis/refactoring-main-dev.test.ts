@@ -14,7 +14,7 @@ describe("refactoring-main-dev", () => {
   test("picks author with most lines deleted as main refactorer", () => {
     const result = refactoringMainDev(data, defaultOptions);
     expect(result).toEqual([
-      { entity: "A", "main-dev": "at", removed: 6, "total-removed": 9, ownership: 0.67 },
+      { entity: "A", "main-dev": "at", removed: 6, "total-removed": 9, ownership: "0.67" },
     ]);
   });
 
@@ -25,7 +25,7 @@ describe("refactoring-main-dev", () => {
     ];
     const result = refactoringMainDev(binaryData, defaultOptions);
     expect(result).toEqual([
-      { entity: "B", "main-dev": "xy", removed: 8, "total-removed": 8, ownership: 1.0 },
+      { entity: "B", "main-dev": "xy", removed: 8, "total-removed": 8, ownership: "1.0" },
     ]);
   });
 });

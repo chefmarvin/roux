@@ -13,7 +13,7 @@ describe("main-dev-by-revs", () => {
   test("picks author with most unique revisions as main developer", () => {
     const result = mainDevByRevs(data, defaultOptions);
     expect(result).toEqual([
-      { entity: "A", "main-dev": "at", added: 2, "total-added": 3, ownership: 0.67 },
+      { entity: "A", "main-dev": "at", added: 2, "total-added": 3, ownership: "0.67" },
     ]);
   });
 
@@ -25,9 +25,9 @@ describe("main-dev-by-revs", () => {
     ];
     const result = mainDevByRevs(dupeRevData, defaultOptions);
     // at: 1 unique rev ("1"), xy: 1 unique rev ("2"), total: 2
-    // Tie — first encountered wins, which is "at"
+    // Tie — last encountered wins (matches code-maat's reverse+sort-by)
     expect(result).toEqual([
-      { entity: "B", "main-dev": "at", added: 1, "total-added": 2, ownership: 0.5 },
+      { entity: "B", "main-dev": "xy", added: 1, "total-added": 2, ownership: "0.5" },
     ]);
   });
 });

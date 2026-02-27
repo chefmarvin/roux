@@ -14,7 +14,7 @@ describe("main-dev", () => {
   test("picks author with most lines added as main developer", () => {
     const result = mainDev(data, defaultOptions);
     expect(result).toEqual([
-      { entity: "A", "main-dev": "xy", added: 15, "total-added": 27, ownership: 0.56 },
+      { entity: "A", "main-dev": "xy", added: 15, "total-added": 27, ownership: "0.56" },
     ]);
   });
 
@@ -25,7 +25,7 @@ describe("main-dev", () => {
     ];
     const result = mainDev(binaryData, defaultOptions);
     expect(result).toEqual([
-      { entity: "B", "main-dev": "xy", added: 5, "total-added": 5, ownership: 1.0 },
+      { entity: "B", "main-dev": "xy", added: 5, "total-added": 5, ownership: "1.0" },
     ]);
   });
 

@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 import { parseGit2Log } from "./parsers/git2";
-import { analyses } from "./analysis";
+import { analyses, analysisHeaders } from "./analysis";
 import { defaultOptions, type AnalysisOptions } from "./analysis/types";
 import { toCSV } from "./output/csv";
 import { toJSON } from "./output/json";
@@ -56,6 +56,8 @@ export function run(opts: AppOptions): string {
     result = result.slice(0, opts.rows);
   }
 
-  const formatter = options.outputFormat === "json" ? toJSON : toCSV;
-  return formatter(result);
+  if (options.outputFormat === "json") {
+    return toJSON(result);
+  }
+  return toCSV(result, analysisHeaders[opts.analysis]);
 }

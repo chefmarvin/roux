@@ -2,6 +2,13 @@ import type { Modification } from "../parsers/types";
 import type { AnalysisOptions } from "./types";
 import { groupBy } from "../utils/dataset";
 
+/** Format ownership ratio to match code-maat's Clojure double formatting */
+function formatOwnership(ratio: number): string {
+  const rounded = Math.round(ratio * 100) / 100;
+  const s = String(rounded);
+  return s.includes(".") ? s : s + ".0";
+}
+
 export function mainDev(
   data: Modification[],
   _options: AnalysisOptions
@@ -21,21 +28,22 @@ export function mainDev(
         0
       );
       totalAdded += added;
-      if (added > bestAdded) {
+      if (added >= bestAdded) {
         bestAdded = added;
         bestAuthor = author as string;
       }
     }
 
-    if (totalAdded > 0) {
-      result.push({
-        entity: entity as string,
-        "main-dev": bestAuthor,
-        added: bestAdded,
-        "total-added": totalAdded,
-        ownership: Math.round((bestAdded / totalAdded) * 100) / 100,
-      });
-    }
+    const ownership = totalAdded > 0
+      ? formatOwnership(bestAdded / totalAdded)
+      : "0.0";
+    result.push({
+      entity: entity as string,
+      "main-dev": bestAuthor,
+      added: bestAdded,
+      "total-added": totalAdded,
+      ownership,
+    });
   }
 
   result.sort((a, b) =>

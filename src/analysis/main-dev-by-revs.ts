@@ -2,6 +2,12 @@ import type { Modification } from "../parsers/types";
 import type { AnalysisOptions } from "./types";
 import { groupBy } from "../utils/dataset";
 
+function formatOwnership(ratio: number): string {
+  const rounded = Math.round(ratio * 100) / 100;
+  const s = String(rounded);
+  return s.includes(".") ? s : s + ".0";
+}
+
 export function mainDevByRevs(
   data: Modification[],
   _options: AnalysisOptions
@@ -18,7 +24,7 @@ export function mainDevByRevs(
     for (const [author, authorMods] of byAuthor) {
       const uniqueRevs = new Set(authorMods.map((m) => m.rev)).size;
       totalRevs += uniqueRevs;
-      if (uniqueRevs > bestRevs) {
+      if (uniqueRevs >= bestRevs) {
         bestRevs = uniqueRevs;
         bestAuthor = author as string;
       }
@@ -30,7 +36,7 @@ export function mainDevByRevs(
         "main-dev": bestAuthor,
         added: bestRevs,
         "total-added": totalRevs,
-        ownership: Math.round((bestRevs / totalRevs) * 100) / 100,
+        ownership: formatOwnership(bestRevs / totalRevs),
       });
     }
   }

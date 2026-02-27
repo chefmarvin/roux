@@ -9,15 +9,15 @@ const opts: AnalysisOptions = {
 };
 
 describe("identity", () => {
-  test("returns all modifications as-is", () => {
+  test("returns all modifications with code-maat column names", () => {
     const data: Modification[] = [
       { entity: "A", rev: "1", author: "at", date: "2013-11-10", locAdded: 10, locDeleted: 1 },
       { entity: "B", rev: "2", author: "xy", date: "2013-11-11", locAdded: 5, locDeleted: 2 },
     ];
     const result = identity(data, opts);
     expect(result).toEqual([
-      { author: "at", entity: "A", rev: "1", date: "2013-11-10", locAdded: 10, locDeleted: 1 },
-      { author: "xy", entity: "B", rev: "2", date: "2013-11-11", locAdded: 5, locDeleted: 2 },
+      { author: "at", rev: "1", date: "2013-11-10", entity: "A", message: "-", "loc-added": 10, "loc-deleted": 1 },
+      { author: "xy", rev: "2", date: "2013-11-11", entity: "B", message: "-", "loc-added": 5, "loc-deleted": 2 },
     ]);
   });
 
@@ -27,15 +27,15 @@ describe("identity", () => {
     ];
     const result = identity(data, opts);
     expect(result).toEqual([
-      { author: "at", entity: "A", rev: "1", date: "2013-11-10", locAdded: 1, locDeleted: 0, message: "fix bug" },
+      { author: "at", rev: "1", date: "2013-11-10", entity: "A", message: "fix bug", "loc-added": 1, "loc-deleted": 0 },
     ]);
   });
 
-  test("omits message field when undefined", () => {
+  test("uses dash as message placeholder when undefined", () => {
     const data: Modification[] = [
       { entity: "A", rev: "1", author: "at", date: "2013-11-10", locAdded: 1, locDeleted: 0 },
     ];
     const result = identity(data, opts);
-    expect(result[0]).not.toHaveProperty("message");
+    expect(result[0].message).toBe("-");
   });
 });

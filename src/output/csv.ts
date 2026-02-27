@@ -1,9 +1,12 @@
-export function toCSV(data: Record<string, unknown>[]): string {
-  if (data.length === 0) return "";
-  const headers = Object.keys(data[0]);
-  const lines = [headers.join(",")];
+export function toCSV(
+  data: Record<string, unknown>[],
+  emptyHeaders?: string[]
+): string {
+  const cols = data.length > 0 ? Object.keys(data[0]) : emptyHeaders;
+  if (!cols) return "";
+  const lines = [cols.join(",")];
   for (const row of data) {
-    lines.push(headers.map((h) => String(row[h] ?? "")).join(","));
+    lines.push(cols.map((h) => String(row[h] ?? "")).join(","));
   }
   return lines.join("\n") + "\n";
 }
