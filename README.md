@@ -74,139 +74,37 @@ Roux 支持 18 种分析：
 
 ### When to Use Each Analysis / 各分析使用场景
 
-> Examples below use [code-maat](https://github.com/adamtornhill/code-maat) as sample repo, filtered to 2014–2015.
->
-> 以下示例使用 code-maat 仓库，筛选 2014–2015 年的数据。
-
 #### Code Hotspots & Complexity / 代码热点与复杂度
 
-**`summary`** — Quick overview of project scale / 快速了解项目规模
-```bash
-$ npx roux summary --repo /path/to/repo --after 2014-01-01 --before 2016-01-01
-statistic,value
-number-of-commits,138
-number-of-entities,65
-number-of-entities-changed,292
-number-of-authors,8
-```
-
-**`revisions`** — Find most frequently modified files (hotspots) / 找出修改最频繁的文件（热点）
-```bash
-$ npx roux revisions --after 2014-01-01 --before 2016-01-01 -n 3 -r 5
-entity,n-revs
-project.clj,41
-src/code_maat/app/app.clj,26
-src/code_maat/cmd_line.clj,21
-README.md,18
-src/code_maat/parsers/hiccup_based_parser.clj,14
-```
-
-**`age`** — Find code that hasn't changed in a long time (stable infrastructure or forgotten debt) / 找出长期未修改的代码（可能是稳定的基础设施，也可能是被遗忘的技术债）
-```bash
-$ npx roux age --after 2014-01-01 --before 2016-01-01 -d 2016-01-01 -n 3 -r 5
-entity,age-months
-src/code_maat/app/layer_mapper.clj,1
-README.md,2
-src/code_maat/parsers/git.clj,3
-test/code_maat/parsers/git_test.clj,3
-.travis.yml,4
-```
+- **`summary`** — Quick overview of project scale / 快速了解项目规模
+- **`revisions`** — Find most frequently modified files (hotspots) / 找出修改最频繁的文件（热点）
+- **`age`** — Find code that hasn't changed in a long time (stable infrastructure or forgotten debt) / 找出长期未修改的代码（可能是稳定的基础设施，也可能是被遗忘的技术债）
 
 #### Code Coupling / 代码耦合
 
-**`coupling`** — Find files that often change together (implicit dependencies) / 找出经常一起修改的文件对（隐式依赖）
-```bash
-$ npx roux coupling --after 2014-01-01 --before 2016-01-01 -m 3 -r 5
-entity,coupled,degree,average-revs
-src/code_maat/analysis/churn.clj,test/code_maat/analysis/churn_test.clj,80,5
-src/code_maat/parsers/git.clj,src/code_maat/parsers/mercurial.clj,80,8
-src/code_maat/parsers/git.clj,test/code_maat/parsers/git_test.clj,75,8
-src/code_maat/parsers/hiccup_based_parser.clj,test/code_maat/parsers/git_test.clj,54,11
-src/code_maat/parsers/mercurial.clj,test/code_maat/parsers/git_test.clj,53,8
-```
-
-**`soc`** — Sum of coupling per file. High soc = "God file" that's coupled to too many others, risky to change / 每个文件的耦合度总和。高 soc = God 文件，与过多文件耦合，改动风险大
-```bash
-$ npx roux soc --after 2014-01-01 --before 2016-01-01 -m 3 -r 5
-entity,soc
-src/code_maat/app/app.clj,68
-test/code_maat/end_to_end/scenario_tests.clj,53
-src/code_maat/cmd_line.clj,50
-project.clj,43
-src/code_maat/parsers/git.clj,34
-```
-
-**`messages`** — Match commit message patterns (e.g. "Fix", "Bug") / 按 commit message 匹配模式
-```bash
-npx roux messages -e "Fix|Bug"
-```
+- **`coupling`** — Find files that often change together (implicit dependencies) / 找出经常一起修改的文件对（隐式依赖）
+- **`soc`** — Sum of coupling per file. High soc = "God file" that's coupled to too many others, risky to change / 每个文件的耦合度总和。高 soc = God 文件，与过多文件耦合，改动风险大
+- **`messages`** — Match commit message patterns (e.g. "Fix", "Bug") to find bug-prone files / 按 commit message 匹配模式（如 "Fix", "Bug"），找出 bug 重灾区
 
 #### Code Churn / 代码变动
 
-**`abs-churn`** — Daily code churn, identify development rhythm / 每日代码变动量，识别开发节奏
-```bash
-npx roux abs-churn --after 2024-06-01
-```
-
-**`entity-churn`** — Churn per file, combine with revisions to identify high-risk files / 每个文件的变动量，结合 revisions 识别高风险文件
-```bash
-npx roux entity-churn -r 20
-```
-
-**`author-churn`** — Churn per author / 每个作者的变动量
-```bash
-npx roux author-churn --rev v1.0..v2.0
-```
+- **`abs-churn`** — Daily code churn, identify development rhythm / 每日代码变动量，识别开发节奏
+- **`entity-churn`** — Churn per file, combine with revisions to identify high-risk files / 每个文件的变动量，结合 revisions 识别高风险文件
+- **`author-churn`** — Churn per author / 每个作者的变动量
 
 #### Code Ownership / 代码所有权
 
-**`entity-ownership`** — Who owns which code / 谁拥有哪些代码
-```bash
-npx roux entity-ownership -r 10
-```
-
-**`main-dev`** — Primary developer per file (by lines added). Ownership < 0.5 means no clear owner / 每个文件的主要开发者（按新增行数）。ownership < 0.5 表示没有明确负责人
-```bash
-$ npx roux main-dev --after 2014-01-01 --before 2016-01-01 -n 3 -r 5
-entity,main-dev,added,total-added,ownership
-.gitignore,Adam Tornhill,1,1,1.0
-.mailmap,Felipe Knorr Kuhn,3,3,1.0
-.travis.yml,Andrea Crotti,7,7,1.0
-project.clj,Adam Tornhill,54,54,1.0
-README.md,Adam Tornhill,105,118,0.89
-```
-
-**`main-dev-by-revs`** — Primary developer per file (by commit count) / 按 commit 次数计算的主要开发者
-```bash
-npx roux main-dev-by-revs -n 3
-```
-
-**`refactoring-main-dev`** — Who is doing refactoring (by lines deleted) / 谁在做重构（按删除行数）
-```bash
-npx roux refactoring-main-dev -r 10
-```
+- **`entity-ownership`** — Who owns which code (by lines added) / 谁拥有哪些代码（按新增行数）
+- **`main-dev`** — Primary developer per file (by lines added). Ownership < 0.5 = no clear owner / 每个文件的主要开发者（按新增行数）。ownership < 0.5 表示没有明确负责人
+- **`main-dev-by-revs`** — Primary developer per file (by commit count) / 按 commit 次数计算的主要开发者
+- **`refactoring-main-dev`** — Who is doing refactoring (by lines deleted) / 谁在做重构（按删除行数）
 
 #### Team & Collaboration / 团队与协作
 
-**`entity-effort`** — Effort distribution across files / 工作量分布
-```bash
-npx roux entity-effort -r 10
-```
-
-**`fragmentation`** — Knowledge fragmentation level / 知识碎片化程度
-```bash
-npx roux fragmentation -n 3
-```
-
-**`communication`** — Developer collaboration network / 开发者协作网络
-```bash
-npx roux communication --after 2024-01-01
-```
-
-**`identity`** — Raw data export for custom analysis / 原始数据导出，供自定义分析
-```bash
-npx roux identity -r 10 -o json
-```
+- **`entity-effort`** — Effort distribution across files / 工作量分布
+- **`fragmentation`** — Knowledge fragmentation level (0–1). High = many people touching code with no clear owner / 知识碎片化程度（0–1）。值高说明多人零散修改，无人真正负责
+- **`communication`** — Developer collaboration network / 开发者协作网络
+- **`identity`** — Raw data export for custom analysis / 原始数据导出，供自定义分析
 
 ## CLI Options / 命令行选项
 
