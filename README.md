@@ -4,9 +4,9 @@ Mine and analyze git history to understand how your codebase evolves — find ho
 
 挖掘和分析 git 历史，理解代码库的演变 — 仅凭 commit 数据就能发现热点、隐式耦合、代码所有权和团队协作模式。
 
-Roux provides 18 analyses covering code hotspots, coupling, churn, ownership, and team collaboration. Written in TypeScript, it starts in milliseconds and installs with `npm install`. Based on the analysis methods from [code-maat](https://github.com/adamtornhill/code-maat) (and Adam Tornhill's [Your Code as a Crime Scene](https://pragprog.com/titles/atcrime2/your-code-as-a-crime-scene-second-edition/)), with fully compatible output.
+Roux provides 18 analyses covering code hotspots, coupling, churn, ownership, and team collaboration. Written in TypeScript, it starts in milliseconds and installs with `npm install`. Based on the analysis methods from [code-maat](https://github.com/adamtornhill/code-maat), with fully compatible output.
 
-Roux 提供 18 种分析，覆盖代码热点、耦合、变动、所有权和团队协作。TypeScript 编写，毫秒级启动，`npm install` 即可使用。基于 [code-maat](https://github.com/adamtornhill/code-maat) 的分析方法（以及 Adam Tornhill 的《[Your Code as a Crime Scene](https://pragprog.com/titles/atcrime2/your-code-as-a-crime-scene-second-edition/)》），输出完全兼容。
+Roux 提供 18 种分析，覆盖代码热点、耦合、变动、所有权和团队协作。TypeScript 编写，毫秒级启动，`npm install` 即可使用。基于 [code-maat](https://github.com/adamtornhill/code-maat) 的分析方法，输出兼容。
 
 ## Quick Start / 快速开始
 
