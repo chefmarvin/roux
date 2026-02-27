@@ -1,0 +1,1496 @@
+--50537ab--2025-07-03--Adam Tornhill
+7	2	README.md
+
+--e745abe--2024-11-18--Adam Tornhill
+--198e739--2024-10-21--Adam Tornhill
+--b46fe3b--2024-10-19--Alessio Izzo
+2	2	README.md
+
+--5ba67ba--2024-10-03--Hayden Barnes
+1	1	README.md
+
+--745dcec--2024-08-20--Adam Tornhill
+--fa40756--2024-08-19--Michael Hunter
+2	0	README.md
+
+--5332e75--2023-06-02--Adam Tornhill
+--5669eed--2023-06-02--Meraioth Ulloa Salazar
+7	7	README.md
+
+--3373aac--2023-04-24--Adam Tornhill
+1	3	README.md
+
+--4829731--2023-03-06--Adam Tornhill
+--0e66c8e--2023-03-06--Adam Tornhill
+10	1	README.md
+
+--e41127b--2023-03-06--Adam Tornhill
+2	1	src/code_maat/cmd_line.clj
+
+--bf3cbcf--2023-03-06--Adam Tornhill
+13	0	test/code_maat/end_to_end/scenario_tests.clj
+
+--457e222--2023-03-06--Adam Tornhill
+22	4	src/code_maat/analysis/logical_coupling.clj
+12	1	test/code_maat/analysis/logical_coupling_test.clj
+
+--7b2c678--2023-02-20--Adam Tornhill
+2	2	project.clj
+
+--dae6670--2023-02-20--Adam Tornhill
+1	1	project.clj
+
+--57c0a8f--2023-02-20--Adam Tornhill
+--c435209--2023-02-20--Adam Tornhill
+20	9	src/code_maat/analysis/effort.clj
+24	8	test/code_maat/analysis/effort_test.clj
+
+--4297037--2022-10-24--Adam Tornhill
+--4829229--2022-10-24--Adam Tornhill
+8	3	src/code_maat/app/time_based_grouper.clj
+
+--946e5be--2022-10-24--Adam Tornhill
+1	1	src/code_maat/cmd_line.clj
+
+--8f6af08--2022-10-24--Adam Tornhill
+1	1	test/code_maat/app/time_based_end_to_end_test.clj
+
+--0323ec4--2022-10-24--Adam Tornhill
+1	0	project.clj
+4	3	src/code_maat/app/app.clj
+110	24	src/code_maat/app/time_based_grouper.clj
+49	0	test/code_maat/app/time_based_grouper_test.clj
+
+--6d2284e--2022-10-20--Adam Tornhill
+44	0	test/code_maat/app/time_based_end_to_end_test.clj
+0	44	test/code_maat/app/time_based_grouper_test.clj
+
+--c8ffe12--2021-12-29--Adam Tornhill
+--64db180--2021-12-28--Stefan Boos
+1	1	Dockerfile
+
+--93f71a4--2021-12-28--Stefan Boos
+1	1	Dockerfile
+
+--cc3d421--2021-10-27--Adam Tornhill
+16	13	README.md
+
+--c41a1ae--2020-12-29--Adam Tornhill
+1	14	src/code_maat/analysis/authors.clj
+0	47	src/code_maat/parsers/limitters.clj
+
+--d9c9405--2020-12-29--Adam Tornhill
+3	3	src/code_maat/parsers/git2.clj
+
+--0deb1ed--2020-12-29--Adam Tornhill
+--a6b6be5--2020-12-29--Adam Tornhill
+0	5	src/code_maat/analysis/commit_messages.clj
+
+--1e0a9a9--2020-12-29--Adam Tornhill
+22	4	src/code_maat/analysis/commit_messages.clj
+2	0	src/code_maat/app/app.clj
+24	1	test/code_maat/analysis/commit_messages_test.clj
+10	1	test/code_maat/end_to_end/scenario_tests.clj
+
+--f415477--2020-12-29--Adam Tornhill
+--7b5d0b6--2020-12-25--Александар Симић
+5	5	README.md
+
+--94f5a8b--2020-12-24--Александар Симић
+0	1	src/code_maat/analysis/code_age.clj
+1	1	src/code_maat/analysis/commit_messages.clj
+2	3	src/code_maat/analysis/communication.clj
+2	2	src/code_maat/analysis/coupling_algos.clj
+4	4	src/code_maat/analysis/sum_of_coupling.clj
+1	1	src/code_maat/analysis/summary.clj
+2	2	src/code_maat/parsers/git.clj
+1	1	src/code_maat/parsers/limitters.clj
+5	5	src/code_maat/parsers/tfs.clj
+1	1	src/code_maat/test/data_driven.clj
+
+--87c37ea--2020-12-24--Александар Симић
+9	9	src/code_maat/parsers/svn.clj
+1	1	src/code_maat/test/data_driven.clj
+
+--2261571--2020-12-24--Александар Симић
+2	1	src/code_maat/parsers/hiccup_based_parser.clj
+
+--2a00477--2020-12-24--Александар Симић
+1	1	src/code_maat/analysis/coupling_algos.clj
+2	2	src/code_maat/analysis/summary.clj
+2	1	src/code_maat/parsers/hiccup_based_parser.clj
+5	3	src/code_maat/parsers/xml.clj
+
+--b48e8e2--2020-12-24--Александар Симић
+3	3	src/code_maat/analysis/coupling_algos.clj
+8	9	src/code_maat/analysis/logical_coupling.clj
+6	6	src/code_maat/analysis/sum_of_coupling.clj
+
+--1a461d9--2020-12-24--Александар Симић
+1	1	src/code_maat/analysis/authors.clj
+
+--3ee814f--2020-12-24--Александар Симић
+1	3	src/code_maat/analysis/code_age.clj
+1	2	src/code_maat/analysis/commit_messages.clj
+1	2	src/code_maat/analysis/communication.clj
+0	1	src/code_maat/analysis/coupling_algos.clj
+0	1	src/code_maat/analysis/effort.clj
+1	2	src/code_maat/analysis/math.clj
+1	2	src/code_maat/parsers/git.clj
+1	2	src/code_maat/parsers/limitters.clj
+1	2	src/code_maat/parsers/perforce.clj
+1	3	src/code_maat/parsers/svn.clj
+1	2	src/code_maat/parsers/tfs.clj
+1	2	src/code_maat/parsers/time_parser.clj
+
+--e8dded8--2020-12-02--Adam Tornhill
+--881cfb0--2020-12-02--Adam Tornhill
+1	1	.travis.yml
+
+--2091d3a--2020-12-02--Adam Tornhill
+--587f9d0--2020-12-02--Adam Tornhill
+18	0	README.md
+
+--ebd2b75--2020-01-31--Adam Tornhill
+3	3	README.md
+
+--d9f6c3b--2020-01-31--Adam Tornhill
+--0d7387e--2020-01-31--Adam Tornhill
+7	1	README.md
+
+--60253e3--2019-12-20--Adam Tornhill
+1	1	README.md
+
+--ee8c8d5--2019-11-04--Adam Tornhill
+--5abf001--2019-11-02--Katrin Leinweber
+5	5	README.md
+
+--5f84c6a--2019-01-29--Adam Tornhill
+12	2	README.md
+
+--ce3a327--2019-01-15--Adam Tornhill
+--068aa14--2019-01-14--Nicolaj Græsholt
+1	1	README.md
+
+--4269a8d--2017-12-19--Adam Tornhill
+--c05d262--2017-12-19--Oleg Grytsynevych
+15	0	Dockerfile
+10	0	README.md
+
+--cebd185--2017-11-03--Adam Tornhill
+9	2	README.md
+1	1	project.clj
+
+--1ae2110--2017-11-03--Adam Tornhill
+1	1	project.clj
+
+--e3daa4c--2017-10-25--Adam Tornhill
+3	0	test/code_maat/end_to_end/mono_git_team_map.csv
+
+--7307338--2017-10-25--Adam Tornhill
+1	1	project.clj
+
+--97330a7--2017-10-25--Adam Tornhill
+1	1	project.clj
+
+--278ea28--2017-10-25--Adam Tornhill
+1	0	src/code_maat/cmd_line.clj
+28	0	test/code_maat/end_to_end/team_level_analyses_test.clj
+
+--db89671--2017-10-25--Adam Tornhill
+1	1	README.md
+2	1	project.clj
+11	1	src/code_maat/app/app.clj
+25	0	src/code_maat/app/team_mapper.clj
+36	0	test/code_maat/app/team_mapper_test.clj
+
+--2a40d01--2017-07-30--Adam Tornhill
+1	1	README.md
+
+--1c867df--2017-01-10--Adam Tornhill
+--5ee133a--2017-01-10--Silvio Montanari
+44	27	test/code_maat/app/grouper_test.clj
+18	14	test/code_maat/end_to_end/git2_live_data_test_with_group.clj
+
+--b30a835--2017-01-05--Silvio Montanari
+0	8	src/code_maat/app/grouper.clj
+
+--4ed7916--2017-01-05--Silvio Montanari
+30	14	src/code_maat/app/grouper.clj
+72	18	test/code_maat/app/grouper_test.clj
+31	1	test/code_maat/end_to_end/git2_live_data_test_with_group.clj
+4	0	test/code_maat/end_to_end/regex-and-text-layers-definition.txt
+2	0	test/code_maat/end_to_end/regex-layers-definition.txt
+1	1	test/code_maat/end_to_end/roslyn_git.log
+
+--d53ee8e--2017-01-05--Silvio Montanari
+24	0	test/code_maat/end_to_end/git2_live_data_test_with_group.clj
+2	0	test/code_maat/end_to_end/text-layers-definition.txt
+
+--de4134f--2016-12-20--Adam Tornhill
+1	1	README.md
+
+--647e139--2016-12-20--Adam Tornhill
+2	2	README.md
+
+--788a0f3--2016-07-19--Adam Tornhill
+1	1	README.md
+
+--9f84ecf--2016-07-19--Adam Tornhill
+1	1	src/code_maat/parsers/git.clj
+22	0	test/code_maat/parsers/git_test.clj
+
+--c27f757--2016-07-19--Adam Tornhill
+--05fd8fd--2016-07-18--Hilbrand Bouwkamp
+1	1	src/code_maat/analysis/math.clj
+15	0	test/code_maat/analysis/math_test.clj
+
+--fc062e8--2016-05-24--Adam Tornhill
+1	1	project.clj
+1	1	src/code_maat/cmd_line.clj
+
+--d258e97--2016-05-24--Adam Tornhill
+2	2	project.clj
+1	1	src/code_maat/cmd_line.clj
+
+--ef46237--2016-05-24--Adam Tornhill
+1	0	.gitignore
+
+--b4eecae--2016-05-24--Adam Tornhill
+4	3	src/code_maat/analysis/churn.clj
+5	4	test/code_maat/analysis/churn_test.clj
+2	2	test/code_maat/end_to_end/churn_scenario_test.clj
+
+--5c0108d--2016-03-30--Adam Tornhill
+--822d8ad--2016-03-30--Adam Tornhill
+--e78a9e0--2016-03-30--Adam Tornhill
+2	0	.gitignore
+
+--25ed6cb--2016-03-28--laenas
+2	1	src/code_maat/parsers/tfs.clj
+25	0	test/code_maat/parsers/tfs_test.clj
+
+--a7cc836--2016-03-28--laenas
+2	1	src/code_maat/parsers/tfs.clj
+31	0	test/code_maat/parsers/tfs_test.clj
+
+--e590d7a--2016-03-28--laenas
+1	1	src/code_maat/parsers/tfs.clj
+4	1	test/code_maat/end_to_end/tfs.log
+4	1	test/code_maat/parsers/tfs_test.clj
+
+--1be5d33--2016-03-27--Adam Tornhill
+--c434bce--2016-03-26--laenas
+2	3	src/code_maat/parsers/tfs.clj
+1	1	test/code_maat/parsers/tfs_test.clj
+
+--183f90c--2016-03-26--laenas
+6	3	src/code_maat/parsers/tfs.clj
+23	0	test/code_maat/parsers/tfs_test.clj
+
+--40f1731--2016-03-25--Ryan Coy
+2	1	src/code_maat/parsers/tfs.clj
+23	0	test/code_maat/parsers/tfs_test.clj
+
+--99c4660--2016-03-24--Adam Tornhill
+--50d4be2--2016-03-23--laenas
+1	0	README.md
+
+--c9fd899--2016-03-23--laenas
+16	11	src/code_maat/parsers/tfs.clj
+
+--a9b0c15--2016-03-23--laenas
+22	3	test/code_maat/parsers/tfs_test.clj
+
+--912874a--2016-03-22--laenas
+2	2	README.md
+
+--1352919--2016-03-22--laenas
+2	1	README.md
+
+--cd2f618--2016-03-22--laenas
+4	0	README.md
+
+--8998398--2016-03-22--laenas
+99	0	src/code_maat/parsers/tfs.clj
+
+--15e1dbf--2016-03-22--laenas
+9	2	src/code_maat/app/app.clj
+
+--5cf7792--2016-03-22--laenas
+1	1	src/code_maat/cmd_line.clj
+
+--b8ab095--2016-03-22--laenas
+110	0	test/code_maat/parsers/tfs_test.clj
+
+--aeefb39--2016-03-22--laenas
+18	0	test/code_maat/end_to_end/tfs_live_data_test.clj
+
+--debeafe--2016-03-22--laenas
+24	0	test/code_maat/end_to_end/tfs.log
+
+--d432971--2016-03-18--Adam Tornhill
+--1e0263a--2016-03-17--Tomasz Janiszewski
+8	5	src/code_maat/analysis/churn.clj
+11	15	test/code_maat/analysis/churn_test.clj
+1	1	test/code_maat/dataset/dataset_test.clj
+7	7	test/code_maat/end_to_end/churn_scenario_test.clj
+
+--94612ca--2016-02-16--Adam Tornhill
+0	2	.travis.yml
+
+--a9a74a9--2016-02-16--Adam Tornhill
+--6f133e6--2016-02-16--Adam Tornhill
+1	1	project.clj
+
+--e469bf9--2016-02-16--Adam Tornhill
+1	1	project.clj
+
+--46868b7--2016-02-14--Adam Tornhill
+--0ae1f9f--2016-02-13--John-Philip Johansson
+3	3	README.md
+
+--912b6b0--2016-02-12--Adam Tornhill
+1	1	README.md
+
+--f8f809a--2016-02-09--Adam Tornhill
+3	1	README.md
+
+--25f7a87--2016-01-13--Adam Tornhill
+6	4	README.md
+
+--9b3f585--2015-11-18--Adam Tornhill
+0	129	src/code_maat/app/layer_mapper.clj
+
+--74a1995--2015-10-28--Adam Tornhill
+--96282e3--2015-10-28--Matthias Nehlsen
+1	1	README.md
+
+--d7cb4d8--2015-09-29--Adam Tornhill
+--f00d538--2015-09-29--Ola Flisbäck
+1	1	src/code_maat/parsers/git.clj
+8	1	test/code_maat/parsers/git_test.clj
+
+--53b0678--2015-08-24--Adam Tornhill
+0	1	.travis.yml
+
+--f44207a--2015-08-24--Adam Tornhill
+--013a54b--2015-08-23--Jan Stępień
+0	4	src/code_maat/parsers/hiccup_based_parser.clj
+
+--931fdca--2015-08-23--Jan Stępień
+26	23	src/code_maat/parsers/hiccup_based_parser.clj
+
+--42dde28--2015-08-23--Jan Stępień
+5	10	src/code_maat/parsers/hiccup_based_parser.clj
+
+--8a2cb35--2015-08-23--Jan Stępień
+22	30	src/code_maat/parsers/hiccup_based_parser.clj
+
+--f9ab921--2015-08-23--Jan Stępień
+9	9	src/code_maat/parsers/hiccup_based_parser.clj
+
+--d6524ab--2015-08-03--Adam Tornhill
+1	1	README.md
+
+--ed19cf0--2015-07-31--Adam Tornhill
+20	12	src/code_maat/analysis/authors.clj
+1	1	test/code_maat/analysis/authors_test.clj
+
+--b5abe20--2015-07-27--Adam Tornhill
+1	1	project.clj
+1	1	src/code_maat/cmd_line.clj
+
+--d684008--2015-07-27--Adam Tornhill
+1	1	project.clj
+1	1	src/code_maat/cmd_line.clj
+
+--f8775a3--2015-07-27--Adam Tornhill
+1	1	src/code_maat/analysis/coupling_algos.clj
+30	19	src/code_maat/analysis/sum_of_coupling.clj
+2	2	test/code_maat/analysis/sum_of_coupling_test.clj
+
+--3ee0903--2015-07-19--Adam Tornhill
+--8ae747a--2015-07-19--Adam Tornhill
+1	1	project.clj
+1	1	test/code_maat/end_to_end/scenario_tests.clj
+
+--577bac6--2015-07-15--Adam Tornhill
+--00d0812--2015-07-14--Andrea Crotti
+12	0	test/code_maat/app/cmd_line_test.clj
+
+--d020c06--2015-07-12--Adam Tornhill
+1	1	src/code_maat/analysis/effort.clj
+1	1	test/code_maat/analysis/effort_test.clj
+
+--7276d4e--2015-07-01--Adam Tornhill
+--4e2cce7--2015-06-29--Andrea Crotti
+7	0	.travis.yml
+2	0	README.md
+
+--02a760a--2015-07-01--Adam Tornhill
+8	1	src/code_maat/parsers/mercurial.clj
+1	1	test/code_maat/end_to_end/scenario_tests.clj
+8	8	test/code_maat/parsers/mercurial_test.clj
+
+--42f2ef8--2015-07-01--Adam Tornhill
+--3351056--2015-07-01--Andrea Crotti
+1	1	test/code_maat/parsers/mercurial_test.clj
+
+--b4a255c--2015-06-30--Adam Tornhill
+2	3	project.clj
+
+--7d8b4d9--2015-06-30--Adam Tornhill
+1	1	project.clj
+1	1	src/code_maat/cmd_line.clj
+
+--f4f1933--2015-06-29--Adam Tornhill
+1	1	project.clj
+2	2	src/code_maat/cmd_line.clj
+
+--96d3e4c--2015-06-29--Adam Tornhill
+13	5	README.md
+15	5	src/code_maat/app/app.clj
+1	1	src/code_maat/cmd_line.clj
+84	0	src/code_maat/parsers/git2.clj
+18	0	test/code_maat/end_to_end/git2_live_data_test.clj
+25	0	test/code_maat/end_to_end/roslyn_git.log
+11	0	test/code_maat/end_to_end/scenario_tests.clj
+6	0	test/code_maat/end_to_end/simple_git2.txt
+129	0	test/code_maat/parsers/git2_test.clj
+
+--a52e8b6--2015-06-14--Adam Tornhill
+6	1	src/code_maat/app/app.clj
+1	0	src/code_maat/cmd_line.clj
+8	1	src/code_maat/output/csv.clj
+
+--7242e54--2015-06-10--Adam Tornhill
+1	1	README.md
+
+--9aa51f2--2015-06-10--Adam Tornhill
+18	11	README.md
+
+--8a3fd52--2015-06-10--Adam Tornhill
+1	0	src/code_maat/cmd_line.clj
+
+--6edbf1a--2015-06-10--Adam Tornhill
+1	1	src/code_maat/cmd_line.clj
+
+--cacc1b9--2015-06-10--Adam Tornhill
+10	5	src/code_maat/app/app.clj
+
+--ab15b85--2015-06-02--Adam Tornhill
+1	1	project.clj
+
+--adb6e3d--2015-06-02--Adam Tornhill
+1	1	project.clj
+
+--5f1d4da--2015-06-02--Adam Tornhill
+1	1	project.clj
+
+--17f716c--2015-04-22--Adam Tornhill
+1	1	project.clj
+
+--4b37ee2--2015-04-22--Adam Tornhill
+-	-	doc/imgs/crime_cover.jpg
+
+--f228492--2015-04-22--Adam Tornhill
+5	3	README.md
+-	-	doc/imgs/crime_cover.jpg
+
+--7a437cd--2015-04-22--Adam Tornhill
+27	5	README.md
+-	-	doc/imgs/code_age_sample.png
+
+--ac71290--2015-04-22--Adam Tornhill
+5	12	src/code_maat/analysis/code_age.clj
+4	1	src/code_maat/parsers/git.clj
+5	2	src/code_maat/parsers/mercurial.clj
+4	1	src/code_maat/parsers/perforce.clj
+4	1	src/code_maat/parsers/svn.clj
+25	0	src/code_maat/parsers/time_parser.clj
+3	2	test/code_maat/end_to_end/scenario_tests.clj
+4	4	test/code_maat/parsers/perforce_test.clj
+3	3	test/code_maat/parsers/svn_test.clj
+14	0	test/code_maat/parsers/time_parser_test.clj
+
+--4f76b90--2015-04-06--Adam Tornhill
+1	1	src/code_maat/analysis/code_age.clj
+17	0	test/code_maat/end_to_end/scenario_tests.clj
+
+--2658944--2015-04-06--Adam Tornhill
+15	15	test/code_maat/end_to_end/scenario_tests.clj
+
+--ef8ae68--2015-04-06--Adam Tornhill
+3	2	src/code_maat/analysis/code_age.clj
+
+--e4e35d3--2015-04-06--Adam Tornhill
+7	1	src/code_maat/analysis/code_age.clj
+
+--62bbb16--2015-04-06--Adam Tornhill
+13	4	src/code_maat/analysis/code_age.clj
+4	1	test/code_maat/analysis/code_age_test.clj
+
+--f2b9b7c--2015-04-06--Adam Tornhill
+8	1	src/code_maat/analysis/code_age.clj
+7	0	test/code_maat/analysis/code_age_test.clj
+
+--9a0fc11--2015-04-06--Adam Tornhill
+14	5	test/code_maat/analysis/code_age_test.clj
+
+--1e54670--2015-04-06--Adam Tornhill
+9	6	test/code_maat/analysis/code_age_test.clj
+
+--64c66fa--2015-04-06--Adam Tornhill
+1	0	src/code_maat/cmd_line.clj
+
+--96a2343--2015-04-05--Adam Tornhill
+5	5	src/code_maat/analysis/code_age.clj
+28	0	test/code_maat/analysis/code_age_test.clj
+
+--2079894--2015-03-24--Adam Tornhill
+4	2	src/code_maat/app/app.clj
+
+--b56f73a--2015-03-24--Adam Tornhill
+59	0	src/code_maat/analysis/code_age.clj
+
+--e6ef3ef--2015-03-23--Adam Tornhill
+--c52f977--2015-03-23--Adam Tornhill
+1	2	src/code_maat/parsers/perforce.clj
+22	1	test/code_maat/parsers/perforce_test.clj
+
+--ca121c1--2015-03-14--Adam Tornhill
+--ce3a0ad--2015-03-14--Tim Chambers
+--09c42dc--2015-03-14--Tim Chambers
+1	1	README.md
+
+--29f91ae--2015-03-09--Adam Tornhill
+--a318c55--2015-03-09--Adam Tornhill
+--13c57d1--2015-03-09--Adam Tornhill
+1	1	project.clj
+
+--0f70211--2015-03-08--Felipe Knorr Kuhn
+1	1	README.md
+
+--37ceb28--2015-03-08--Felipe Knorr Kuhn
+3	0	.mailmap
+
+--d1cf155--2015-03-08--Adam Tornhill
+1	1	README.md
+
+--357896c--2015-03-08--Adam Tornhill
+3	1	README.md
+
+--2be0704--2015-03-08--Adam Tornhill
+2	2	README.md
+1	1	project.clj
+
+--72be7c2--2015-03-07--Adam Tornhill
+11	3	src/code_maat/app/app.clj
+3	0	src/code_maat/cmd_line.clj
+
+--e241ab3--2015-02-08--Adam Tornhill
+1	1	project.clj
+
+--f80481a--2015-02-08--Adam Tornhill
+1	1	project.clj
+
+--56354f7--2015-01-31--Adam Tornhill
+1	1	project.clj
+
+--61df934--2015-01-31--Adam Tornhill
+1	1	project.clj
+
+--62013b9--2015-01-25--Adam Tornhill
+--eb45f59--2015-01-25--Adam Tornhill
+1	1	project.clj
+
+--2dbc9f1--2015-01-25--Adam Tornhill
+--999210b--2015-01-23--robertc
+1	1	README.md
+1	3	src/code_maat/app/app.clj
+27	16	src/code_maat/parsers/perforce.clj
+0	10	test/code_maat/end_to_end/sample_p4.log
+1	7	test/code_maat/end_to_end/simple_p4.txt
+8	19	test/code_maat/parsers/perforce_test.clj
+
+--add8fd9--2015-01-20--Adam Tornhill
+1	1	project.clj
+
+--41ced1f--2015-01-18--Adam Tornhill
+3	9	src/code_maat/parsers/git.clj
+19	40	src/code_maat/parsers/hiccup_based_parser.clj
+1	5	src/code_maat/parsers/mercurial.clj
+7	6	test/code_maat/parsers/git_test.clj
+
+--1c7314e--2015-01-17--Adam Tornhill
+6	9	src/code_maat/app/app.clj
+
+--a53e02a--2015-01-17--Adam Tornhill
+7	1	src/code_maat/parsers/hiccup_based_parser.clj
+
+--41e1261--2015-01-17--Adam Tornhill
+1	1	project.clj
+5	7	src/code_maat/app/app.clj
+2	1	src/code_maat/cmd_line.clj
+27	11	src/code_maat/parsers/git.clj
+114	13	src/code_maat/parsers/hiccup_based_parser.clj
+10	6	src/code_maat/parsers/mercurial.clj
+14	14	test/code_maat/parsers/git_test.clj
+
+--48afcb0--2015-01-16--Adam Tornhill
+2	2	project.clj
+
+--936afce--2015-01-21--robertc
+7	2	README.md
+6	6	src/code_maat/app/app.clj
+1	1	src/code_maat/cmd_line.clj
+24	9	src/code_maat/parsers/perforce.clj
+0	0	test/code_maat/end_to_end/empty.p4
+18	0	test/code_maat/end_to_end/perforce_live_data_test.clj
+30	0	test/code_maat/end_to_end/sample_p4.log
+24	1	test/code_maat/end_to_end/scenario_tests.clj
+16	0	test/code_maat/end_to_end/simple_p4.txt
+71	0	test/code_maat/parsers/perforce_test.clj
+
+--bd404c2--2015-01-20--robertc
+11	1	src/code_maat/app/app.clj
+43	0	src/code_maat/parsers/perforce.clj
+
+--741f2e0--2015-01-20--Adam Tornhill
+1	1	project.clj
+
+--349bdde--2015-01-18--Adam Tornhill
+3	9	src/code_maat/parsers/git.clj
+19	40	src/code_maat/parsers/hiccup_based_parser.clj
+1	5	src/code_maat/parsers/mercurial.clj
+7	6	test/code_maat/parsers/git_test.clj
+
+--dec1452--2015-01-17--Adam Tornhill
+6	9	src/code_maat/app/app.clj
+
+--b99ed20--2015-01-17--Adam Tornhill
+7	1	src/code_maat/parsers/hiccup_based_parser.clj
+
+--c2b09bc--2015-01-17--Adam Tornhill
+1	1	project.clj
+5	7	src/code_maat/app/app.clj
+2	1	src/code_maat/cmd_line.clj
+27	11	src/code_maat/parsers/git.clj
+114	13	src/code_maat/parsers/hiccup_based_parser.clj
+10	6	src/code_maat/parsers/mercurial.clj
+14	14	test/code_maat/parsers/git_test.clj
+
+--49795b9--2015-01-16--Adam Tornhill
+2	2	project.clj
+
+--4226c51--2014-12-23--Adam Tornhill
+1	1	project.clj
+
+--ac4bd93--2014-12-22--Adam Tornhill
+6	2	README.md
+
+--794663e--2014-12-22--Adam Tornhill
+12	2	src/code_maat/app/app.clj
+1	0	src/code_maat/cmd_line.clj
+
+--9c3586e--2014-12-22--Adam Tornhill
+1	1	project.clj
+
+--2951eec--2014-12-22--Adam Tornhill
+1	1	project.clj
+2	2	src/code_maat/cmd_line.clj
+
+--5c7d19e--2014-11-28--Adam Tornhill
+1	1	project.clj
+8	4	src/code_maat/analysis/churn.clj
+2	2	test/code_maat/analysis/churn_test.clj
+1	1	test/code_maat/end_to_end/churn_scenario_test.clj
+
+--b8475f9--2014-11-28--Adam Tornhill
+1	1	project.clj
+
+--2e82dae--2014-11-19--Adam Tornhill
+1	1	src/code_maat/analysis/effort.clj
+1	1	test/code_maat/analysis/effort_test.clj
+
+--3df7d5b--2014-11-19--Adam Tornhill
+24	0	src/code_maat/analysis/effort.clj
+1	0	src/code_maat/app/app.clj
+15	0	test/code_maat/analysis/effort_test.clj
+
+--84b1f72--2014-11-19--Adam Tornhill
+1	1	project.clj
+4	5	src/code_maat/parsers/git.clj
+1	1	test/code_maat/end_to_end/scenario_tests.clj
+37	10	test/code_maat/parsers/git_test.clj
+
+--1b0a0f3--2014-11-10--Adam Tornhill
+1	1	src/code_maat/app/grouper.clj
+4	1	test/code_maat/app/grouper_test.clj
+
+--177755f--2014-10-28--Adam Tornhill
+2	2	src/code_maat/app/app.clj
+12	2	src/code_maat/app/time_based_grouper.clj
+9	1	test/code_maat/app/time_based_grouper_test.clj
+
+--e25f0d1--2014-10-22--Adam Tornhill
+28	10	src/code_maat/analysis/churn.clj
+1	0	src/code_maat/app/app.clj
+17	0	test/code_maat/analysis/churn_test.clj
+
+--b927944--2014-10-22--Adam Tornhill
+13	7	src/code_maat/analysis/churn.clj
+
+--9f50ed0--2014-10-18--Adam Tornhill
+4	0	README.md
+
+--e7bd3b0--2014-10-17--Adam Tornhill
+6	0	test/code_maat/app/day_coupled_entities_git.txt
+36	0	test/code_maat/app/time_based_grouper_test.clj
+2	16	test/code_maat/end_to_end/scenario_tests.clj
+23	0	test/code_maat/tools/test_tools.clj
+
+--23a5b8b--2014-10-17--Adam Tornhill
+21	5	src/code_maat/app/app.clj
+30	0	src/code_maat/app/time_based_grouper.clj
+2	0	src/code_maat/cmd_line.clj
+
+--551dab7--2014-10-16--Adam Tornhill
+72	0	src/code_maat/analysis/commit_messages.clj
+5	2	src/code_maat/app/app.clj
+1	0	src/code_maat/cmd_line.clj
+26	0	test/code_maat/analysis/commit_messages_test.clj
+4	4	test/code_maat/analysis/test_data.clj
+
+--b770798--2014-10-09--Adam Tornhill
+5	3	src/code_maat/parsers/hiccup_based_parser.clj
+2	2	test/code_maat/end_to_end/scenario_tests.clj
+20	10	test/code_maat/parsers/git_test.clj
+
+--5578e02--2014-10-09--Adam Tornhill
+1	1	project.clj
+11	2	src/code_maat/parsers/git.clj
+13	26	src/code_maat/parsers/hiccup_based_parser.clj
+9	1	src/code_maat/parsers/mercurial.clj
+
+--a8c8647--2014-10-01--Adam Tornhill
+1	1	project.clj
+
+--f5d8fe9--2014-09-27--Adam Tornhill
+1	1	src/code_maat/app/app.clj
+
+--37624c9--2014-09-27--Adam Tornhill
+1	1	src/code_maat/app/grouper.clj
+4	1	test/code_maat/app/grouper_test.clj
+
+--c43820d--2014-09-19--Adam Tornhill
+14	4	src/code_maat/analysis/churn.clj
+12	3	test/code_maat/analysis/churn_test.clj
+
+--c95c20f--2014-09-19--Adam Tornhill
+39	0	src/code_maat/analysis/churn.clj
+1	0	src/code_maat/app/app.clj
+21	0	test/code_maat/analysis/churn_test.clj
+
+--6fa2c95--2014-09-17--Adam Tornhill
+29	1	src/code_maat/analysis/effort.clj
+7	2	src/code_maat/analysis/math.clj
+1	0	src/code_maat/app/app.clj
+13	0	test/code_maat/analysis/effort_test.clj
+
+--8dd646c--2014-08-10--Adam Tornhill
+1	1	project.clj
+2	0	src/code_maat/app/app.clj
+1	1	src/code_maat/cmd_line.clj
+
+--b253cec--2014-08-10--Adam Tornhill
+1	1	src/code_maat/analysis/coupling_algos.clj
+5	91	src/code_maat/analysis/logical_coupling.clj
+2	4	src/code_maat/analysis/sum_of_coupling.clj
+
+--70fcce9--2014-08-10--Adam Tornhill
+100	0	src/code_maat/analysis/coupling_algos.clj
+4	92	src/code_maat/analysis/sum_of_coupling.clj
+52	0	test/code_maat/analysis/coupling_algos_test.clj
+0	38	test/code_maat/analysis/sum_of_coupling_test.clj
+
+--635081b--2014-08-10--Adam Tornhill
+143	0	src/code_maat/analysis/sum_of_coupling.clj
+63	0	test/code_maat/analysis/sum_of_coupling_test.clj
+
+--8e7f979--2014-08-08--Adam Tornhill
+1	1	src/code_maat/cmd_line.clj
+
+--4ad2220--2014-08-07--Adam Tornhill
+9	4	src/code_maat/analysis/logical_coupling.clj
+3	0	src/code_maat/cmd_line.clj
+2	1	test/code_maat/analysis/test_data.clj
+
+--4064b91--2014-08-07--Adam Tornhill
+3	3	project.clj
+
+--e05bd3f--2014-08-07--Adam Tornhill
+2	5	src/code_maat/analysis/logical_coupling.clj
+
+--a6d5d75--2014-08-07--Adam Tornhill
+4	7	src/code_maat/analysis/logical_coupling.clj
+
+--ba3b82c--2014-08-06--Adam Tornhill
+2	2	src/code_maat/analysis/logical_coupling.clj
+
+--b409033--2014-08-06--Adam Tornhill
+8	11	src/code_maat/analysis/logical_coupling.clj
+
+--5464710--2014-08-06--Adam Tornhill
+79	126	src/code_maat/analysis/logical_coupling.clj
+15	76	test/code_maat/analysis/logical_coupling_test.clj
+
+--53afd0c--2014-08-06--Adam Tornhill
+3	1	src/code_maat/analysis/logical_coupling.clj
+
+--9f00f46--2014-08-06--Adam Tornhill
+1	1	project.clj
+
+--833a269--2014-08-06--Adam Tornhill
+1	0	.gitignore
+11	0	src/code_maat/analysis/logical_coupling.clj
+8	9	test/code_maat/analysis/logical_coupling_test.clj
+1	1	test/code_maat/end_to_end/scenario_tests.clj
+
+--06d7884--2014-06-19--Adam Tornhill
+2	2	project.clj
+60	0	src/code_maat/cmd_line.clj
+0	60	src/code_maat/core.clj
+
+--80cdc83--2014-06-19--Adam Tornhill
+2	2	src/code_maat/app/app.clj
+129	0	src/code_maat/app/grouper.clj
+1	1	src/code_maat/app/layer_mapper.clj
+55	0	test/code_maat/app/grouper_test.clj
+0	55	test/code_maat/app/layer_mapper_test.clj
+
+--cf89a32--2014-06-19--Adam Tornhill
+31	31	src/code_maat/app/layer_mapper.clj
+3	3	test/code_maat/app/layer_mapper_test.clj
+
+--cf8dd8a--2014-06-19--Adam Tornhill
+1	1	project.clj
+2	2	src/code_maat/app/layer_mapper.clj
+
+--dbb33bc--2014-06-19--Adam Tornhill
+1	1	project.clj
+
+--22d14a4--2014-06-19--Adam Tornhill
+87	12	src/code_maat/app/layer_mapper.clj
+28	7	test/code_maat/app/layer_mapper_test.clj
+
+--ea009e7--2014-06-18--Adam Tornhill
+5	1	src/code_maat/app/layer_mapper.clj
+
+--c1b5baa--2014-06-06--Adam Tornhill
+16	2	src/code_maat/app/app.clj
+1	1	src/code_maat/app/layer_mapper.clj
+
+--e501215--2014-06-06--Adam Tornhill
+25	1	src/code_maat/app/app.clj
+5	7	src/code_maat/parsers/hiccup_based_parser.clj
+7	9	src/code_maat/parsers/svn.clj
+47	16	test/code_maat/parsers/git_test.clj
+9	10	test/code_maat/parsers/mercurial_test.clj
+4	4	test/code_maat/parsers/svn_test.clj
+
+--08471f8--2014-06-06--Adam Tornhill
+8	12	src/code_maat/parsers/svn.clj
+1	1	test/code_maat/end_to_end/scenario_tests.clj
+14	15	test/code_maat/parsers/svn_test.clj
+
+--d36cf0a--2014-06-06--Adam Tornhill
+2	2	src/code_maat/app/app.clj
+
+--93fe513--2014-06-06--Adam Tornhill
+50	0	src/code_maat/app/layer_mapper.clj
+14	13	src/code_maat/core.clj
+34	0	test/code_maat/app/layer_mapper_test.clj
+
+--d00b7c7--2014-06-06--Adam Tornhill
+1	1	src/code_maat/core.clj
+
+--bc2960b--2014-05-22--Adam Tornhill
+1	1	project.clj
+
+--6e1ef25--2014-05-22--Adam Tornhill
+1	1	project.clj
+
+--c1f51fa--2014-05-22--Adam Tornhill
+24	19	README.md
+
+--cf58447--2014-05-22--Adam Tornhill
+1	1	project.clj
+1	1	src/code_maat/analysis/authors.clj
+1	1	src/code_maat/analysis/communication.clj
+45	31	src/code_maat/core.clj
+13	9	test/code_maat/analysis/churn_test.clj
+2	2	test/code_maat/analysis/communication_test.clj
+2	2	test/code_maat/analysis/logical_coupling_test.clj
+1	1	test/code_maat/end_to_end/git_live_data_test.clj
+1	1	test/code_maat/end_to_end/mercurial_live_data_test.clj
+1	1	test/code_maat/end_to_end/scenario_tests.clj
+1	1	test/code_maat/end_to_end/svn_live_data_test.clj
+
+--dd8e605--2014-04-18--Adam Tornhill
+8	8	project.clj
+
+--49a1007--2013-11-29--Adam Tornhill
+11	10	src/code_maat/parsers/svn.clj
+1	1	test/code_maat/end_to_end/scenario_tests.clj
+18	18	test/code_maat/parsers/svn_test.clj
+
+--da20e42--2013-11-29--Adam Tornhill
+3	3	src/code_maat/analysis/logical_coupling.clj
+1	1	src/code_maat/app/app.clj
+2	2	src/code_maat/parsers/git.clj
+3	3	test/code_maat/analysis/logical_coupling_test.clj
+
+--70747db--2013-11-25--Adam Tornhill
+10	7	src/code_maat/analysis/communication.clj
+5	3	src/code_maat/analysis/math.clj
+
+--0122e4e--2013-11-25--Adam Tornhill
+4	2	src/code_maat/app/app.clj
+14	0	test/code_maat/end_to_end/scenario_tests.clj
+
+--d6d9199--2013-11-25--Adam Tornhill
+99	0	src/code_maat/analysis/communication.clj
+28	0	test/code_maat/analysis/communication_test.clj
+
+--3b81c73--2013-11-15--Adam Tornhill
+10	1	README.md
+2	3	src/code_maat/analysis/churn.clj
+57	0	src/code_maat/analysis/effort.clj
+4	2	src/code_maat/app/app.clj
+0	2	test/code_maat/analysis/churn_test.clj
+34	0	test/code_maat/analysis/effort_test.clj
+14	0	test/code_maat/end_to_end/scenario_tests.clj
+
+--83ab226--2013-11-11--Adam Tornhill
+13	0	README.md
+2	2	project.clj
+36	0	src/code_maat/analysis/churn.clj
+2	1	src/code_maat/app/app.clj
+20	0	test/code_maat/analysis/churn_test.clj
+8	0	test/code_maat/end_to_end/churn_scenario_test.clj
+
+--86b1248--2013-11-11--Adam Tornhill
+6	0	README.md
+1	1	project.clj
+14	0	src/code_maat/analysis/churn.clj
+2	1	src/code_maat/app/app.clj
+7	0	test/code_maat/analysis/churn_test.clj
+7	0	test/code_maat/end_to_end/churn_scenario_test.clj
+
+--cfa4ad4--2013-11-11--Adam Tornhill
+23	33	src/code_maat/analysis/churn.clj
+
+--314d56b--2013-11-11--Adam Tornhill
+12	0	README.md
+18	2	src/code_maat/analysis/churn.clj
+2	1	src/code_maat/app/app.clj
+2	1	src/code_maat/core.clj
+7	0	test/code_maat/analysis/churn_test.clj
+7	0	test/code_maat/end_to_end/churn_scenario_test.clj
+
+--70d2aca--2013-11-11--Adam Tornhill
+8	0	src/code_maat/analysis/churn.clj
+10	1	src/code_maat/dataset/dataset.clj
+12	13	test/code_maat/analysis/churn_test.clj
+
+--6997f8e--2013-11-11--Adam Tornhill
+21	1	README.md
+-	-	doc/imgs/abs_churn_sample.png
+1	1	project.clj
+
+--585dde3--2013-11-10--Adam Tornhill
+20	0	test/code_maat/end_to_end/churn_scenario_test.clj
+
+--c3f192b--2013-11-10--Adam Tornhill
+42	4	src/code_maat/analysis/churn.clj
+6	4	src/code_maat/app/app.clj
+1	1	src/code_maat/core.clj
+28	3	test/code_maat/analysis/churn_test.clj
+
+--8651cd6--2013-11-10--Adam Tornhill
+23	0	src/code_maat/analysis/churn.clj
+21	0	test/code_maat/analysis/churn_test.clj
+
+--bfcb4de--2013-11-10--Adam Tornhill
+2	2	src/code_maat/parsers/git.clj
+22	12	src/code_maat/parsers/hiccup_based_parser.clj
+7	4	test/code_maat/end_to_end/scenario_tests.clj
+14	14	test/code_maat/parsers/git_test.clj
+
+--9141fc8--2013-11-10--Adam Tornhill
+5	3	src/code_maat/parsers/git.clj
+15	1	src/code_maat/parsers/hiccup_based_parser.clj
+145	137	test/code_maat/end_to_end/mono_git.log
+3	3	test/code_maat/end_to_end/simple_git.txt
+21	9	test/code_maat/parsers/git_test.clj
+
+--d804759--2013-09-24--Adam Tornhill
+5	1	README.md
+-	-	doc/imgs/tree_map_sample.png
+
+--1bafb6d--2013-09-24--Adam Tornhill
+1	1	project.clj
+
+--0a05fba--2013-09-17--Adam Tornhill
+5	1	README.md
+5	5	src/code_maat/analysis/authors.clj
+3	4	src/code_maat/app/app.clj
+1	1	src/code_maat/core.clj
+18	1	test/code_maat/end_to_end/scenario_tests.clj
+
+--540e8de--2013-09-07--Adam Tornhill
+1	1	project.clj
+23	21	src/code_maat/analysis/logical_coupling.clj
+13	17	src/code_maat/parsers/hiccup_based_parser.clj
+0	1	test/code_maat/analysis/logical_coupling_test.clj
+
+--475e5eb--2013-09-05--Adam Tornhill
+7	2	README.md
+1	1	project.clj
+24	15	src/code_maat/app/app.clj
+1	1	src/code_maat/core.clj
+0	0	test/code_maat/end_to_end/empty.hg
+18	0	test/code_maat/end_to_end/mercurial_live_data_test.clj
+26	12	test/code_maat/end_to_end/scenario_tests.clj
+6	0	test/code_maat/end_to_end/simple_hg.txt
+493	0	test/code_maat/end_to_end/tpp_hg.log
+
+--70bcebc--2013-09-05--Adam Tornhill
+5	72	src/code_maat/parsers/git.clj
+84	0	src/code_maat/parsers/hiccup_based_parser.clj
+7	20	src/code_maat/parsers/mercurial.clj
+19	59	test/code_maat/parsers/git_test.clj
+13	19	test/code_maat/parsers/mercurial_test.clj
+
+--7f4c5df--2013-09-05--Adam Tornhill
+1	1	project.clj
+58	0	src/code_maat/parsers/mercurial.clj
+43	0	test/code_maat/parsers/mercurial_test.clj
+
+--8f21dda--2013-09-03--Adam Tornhill
+2	0	.gitignore
+4	4	project.clj
+3	2	src/code_maat/parsers/svn.clj
+31	0	src/code_maat/test/data_driven.clj
+0	0	test/code_maat/end_to_end/empty.git
+68	33	test/code_maat/end_to_end/scenario_tests.clj
+5	17	test/code_maat/end_to_end/simple_git.txt
+6	6	test/code_maat/parsers/svn_test.clj
+
+--bda51b5--2013-09-03--Adam Tornhill
+56	41	README.md
+1	1	project.clj
+
+--ba94514--2013-09-01--Adam Tornhill
+5	6	src/code_maat/analysis/logical_coupling.clj
+3	1	src/code_maat/core.clj
+2	1	test/code_maat/analysis/test_data.clj
+
+--834a72c--2013-08-30--Adam Tornhill
+4	1	src/code_maat/analysis/summary.clj
+
+--b23000c--2013-08-30--Adam Tornhill
+5	1	src/code_maat/analysis/entities.clj
+25	0	src/code_maat/analysis/summary.clj
+4	2	src/code_maat/app/app.clj
+1	1	src/code_maat/core.clj
+
+--8a6970c--2013-08-30--Adam Tornhill
+18	0	test/code_maat/end_to_end/git_live_data_test.clj
+230	0	test/code_maat/end_to_end/mono_git.log
+
+--48cf17a--2013-08-30--Adam Tornhill
+0	1	src/code_maat/app/app.clj
+1	7	src/code_maat/core.clj
+2	16	src/code_maat/parsers/git.clj
+0	13	src/code_maat/parsers/svn.clj
+1	10	test/code_maat/end_to_end/scenario_tests.clj
+1	6	test/code_maat/parsers/svn_test.clj
+
+--51f0fb2--2013-08-30--Adam Tornhill
+25	33	src/code_maat/parsers/git.clj
+32	94	test/code_maat/parsers/git_test.clj
+
+--990442e--2013-08-29--Adam Tornhill
+1	1	project.clj
+2	2	src/code_maat/parsers/git.clj
+
+--b777738--2013-08-29--Adam Tornhill
+10	9	src/code_maat/parsers/git.clj
+32	0	test/code_maat/parsers/git_test.clj
+
+--a527b79--2013-08-29--Adam Tornhill
+6	2	src/code_maat/parsers/git.clj
+0	7	test/code_maat/end_to_end/scenario_tests.clj
+18	0	test/code_maat/end_to_end/simple_git.txt
+21	0	test/code_maat/end_to_end/svn_live_data_test.clj
+
+--9519aac--2013-08-29--Adam Tornhill
+2	2	src/code_maat/analysis/authors.clj
+6	4	src/code_maat/analysis/logical_coupling.clj
+1	1	test/code_maat/end_to_end/scenario_tests.clj
+
+--80ab475--2013-08-28--Adam Tornhill
+1	1	src/code_maat/app/app.clj
+15	3	src/code_maat/parsers/git.clj
+0	8	src/code_maat/parsers/svn.clj
+1	1	test/code_maat/parsers/git_test.clj
+
+--72adc01--2013-08-28--Adam Tornhill
+48	0	src/code_maat/parsers/limitters.clj
+8	30	src/code_maat/parsers/svn.clj
+
+--3789227--2013-08-28--Adam Tornhill
+2	0	src/code_maat/app/app.clj
+26	17	src/code_maat/parsers/git.clj
+4	1	test/code_maat/parsers/git_test.clj
+
+--5496b5a--2013-08-28--Adam Tornhill
+2	4	src/code_maat/parsers/git.clj
+
+--b23590c--2013-08-28--Adam Tornhill
+1	0	.gitignore
+5	0	README.md
+33	10	src/code_maat/app/app.clj
+1	1	src/code_maat/core.clj
+8	10	src/code_maat/parsers/git.clj
+6	4	test/code_maat/end_to_end/scenario_tests.clj
+3	3	test/code_maat/parsers/git_test.clj
+
+--de048f2--2013-08-27--Adam Tornhill
+15	17	src/code_maat/parsers/git.clj
+7	0	test/code_maat/parsers/git_test.clj
+
+--202a0a2--2013-08-27--Adam Tornhill
+60	4	src/code_maat/parsers/git.clj
+26	5	test/code_maat/parsers/git_test.clj
+
+--4558484--2013-08-26--Adam Tornhill
+13	5	src/code_maat/parsers/git.clj
+3	1	src/code_maat/parsers/svn.clj
+20	24	test/code_maat/parsers/git_test.clj
+
+--7757d31--2013-08-26--Adam Tornhill
+3	2	project.clj
+57	0	src/code_maat/parsers/git.clj
+97	0	test/code_maat/parsers/git_test.clj
+
+--2d8e52c--2013-08-26--Adam Tornhill
+1	1	project.clj
+
+--9b0e99d--2013-08-23--Adam Tornhill
+5	0	project.clj
+5	0	src/code_maat/analysis/authors.clj
+5	0	src/code_maat/analysis/entities.clj
+5	0	src/code_maat/analysis/logical_coupling.clj
+5	0	src/code_maat/analysis/math.clj
+5	0	src/code_maat/analysis/workarounds.clj
+5	0	src/code_maat/app/app.clj
+5	0	src/code_maat/core.clj
+5	0	src/code_maat/dataset/dataset.clj
+5	0	src/code_maat/output/csv.clj
+5	0	src/code_maat/output/filters.clj
+5	0	src/code_maat/parsers/svn.clj
+5	0	src/code_maat/parsers/xml.clj
+5	0	test/code_maat/analysis/authors_test.clj
+5	0	test/code_maat/analysis/entities_test.clj
+5	0	test/code_maat/analysis/logical_coupling_test.clj
+5	0	test/code_maat/analysis/test_data.clj
+5	0	test/code_maat/dataset/dataset_test.clj
+5	0	test/code_maat/end_to_end/scenario_tests.clj
+5	0	test/code_maat/parsers/svn_test.clj
+
+--0ab4be1--2013-08-22--Adam Tornhill
+3	3	README.md
+
+--b815f18--2013-08-22--Adam Tornhill
+35	27	README.md
+
+--fd5a7e8--2013-08-22--Adam Tornhill
+2	3	README.md
+1	1	src/code_maat/core.clj
+
+--6bc9967--2013-08-22--Adam Tornhill
+4	0	README.md
+
+--e5948c8--2013-08-22--Adam Tornhill
+92	2	README.md
+-	-	doc/imgs/coupling_sample.png
+3	1	project.clj
+3	2	src/code_maat/core.clj
+
+--683554d--2013-08-21--Adam Tornhill
+1	0	project.clj
+3	2	src/code_maat/analysis/logical_coupling.clj
+1	4	src/code_maat/analysis/math.clj
+
+--2b068a3--2013-08-20--Adam Tornhill
+14	6	src/code_maat/parsers/svn.clj
+
+--c72d12c--2013-08-20--Adam Tornhill
+1	4	src/code_maat/analysis/logical_coupling.clj
+4	1	src/code_maat/analysis/math.clj
+
+--0b4924e--2013-08-20--Adam Tornhill
+1	0	.gitignore
+5	1	src/code_maat/analysis/logical_coupling.clj
+7	7	test/code_maat/analysis/logical_coupling_test.clj
+1	1	test/code_maat/end_to_end/scenario_tests.clj
+
+--877b956--2013-08-20--Adam Tornhill
+12	62	src/code_maat/analysis/logical_coupling.clj
+7	0	src/code_maat/analysis/math.clj
+
+--190c623--2013-08-20--Adam Tornhill
+1	0	src/code_maat/analysis/logical_coupling.clj
+15	1	src/code_maat/app/app.clj
+3	1	test/code_maat/end_to_end/scenario_tests.clj
+
+--bd9fb4b--2013-08-20--Adam Tornhill
+19	14	src/code_maat/analysis/logical_coupling.clj
+
+--c1c4229--2013-08-20--Adam Tornhill
+13	10	src/code_maat/analysis/logical_coupling.clj
+1	0	test/code_maat/analysis/logical_coupling_test.clj
+
+--f2f75e5--2013-08-20--Adam Tornhill
+3	3	src/code_maat/analysis/logical_coupling.clj
+5	3	src/code_maat/app/app.clj
+3	0	test/code_maat/end_to_end/empty.xml
+11	0	test/code_maat/end_to_end/scenario_tests.clj
+
+--67a4379--2013-08-20--Adam Tornhill
+1	1	src/code_maat/app/app.clj
+17	6	test/code_maat/end_to_end/scenario_tests.clj
+9629	0	test/code_maat/end_to_end/statsvn.log
+
+--d286b67--2013-08-19--Adam Tornhill
+2	3	src/code_maat/parsers/svn.clj
+0	3	test/code_maat/end_to_end/simple.xml
+0	3	test/code_maat/parsers/svn_test.clj
+
+--cb73fa0--2013-08-19--Adam Tornhill
+6	3	src/code_maat/app/app.clj
+8	5	src/code_maat/core.clj
+10	6	src/code_maat/parsers/svn.clj
+
+--142ddc0--2013-08-19--Adam Tornhill
+1	1	src/code_maat/core.clj
+4	7	src/code_maat/parsers/svn.clj
+
+--706aa95--2013-08-19--Adam Tornhill
+9	6	src/code_maat/parsers/svn.clj
+2	2	test/code_maat/parsers/svn_test.clj
+
+--f847b44--2013-08-19--Adam Tornhill
+0	4	src/code_maat/app/app.clj
+
+--e15010d--2013-08-19--Adam Tornhill
+3	2	src/code_maat/core.clj
+33	4	src/code_maat/parsers/svn.clj
+11	0	test/code_maat/end_to_end/scenario_tests.clj
+
+--1b2a690--2013-08-19--Adam Tornhill
+3	1	src/code_maat/core.clj
+10	5	src/code_maat/parsers/svn.clj
+
+--c512afc--2013-08-19--Adam Tornhill
+6	5	src/code_maat/analysis/authors.clj
+5	1	src/code_maat/dataset/dataset.clj
+4	4	test/code_maat/analysis/authors_test.clj
+5	1	test/code_maat/dataset/dataset_test.clj
+
+--f7691a4--2013-08-19--Adam Tornhill
+1	0	.gitignore
+
+--34ce06b--2013-08-19--Adam Tornhill
+1	0	project.clj
+2	2	src/code_maat/app/app.clj
+5	2	src/code_maat/output/csv.clj
+15	7	test/code_maat/end_to_end/scenario_tests.clj
+
+--8fe1031--2013-08-18--Adam Tornhill
+20	19	src/code_maat/analysis/logical_coupling.clj
+
+--554d2ae--2013-08-18--Adam Tornhill
+2	2	project.clj
+
+--915492f--2013-08-18--Adam Tornhill
+1	64	src/code_maat/analysis/logical_coupling.clj
+11	38	test/code_maat/analysis/logical_coupling_test.clj
+
+--548b10d--2013-08-17--Adam Tornhill
+1	1	src/code_maat/analysis/logical_coupling.clj
+
+--5947856--2013-08-17--Adam Tornhill
+3	3	src/code_maat/analysis/authors.clj
+3	3	src/code_maat/analysis/entities.clj
+19	9	src/code_maat/analysis/logical_coupling.clj
+5	2	src/code_maat/app/app.clj
+7	1	src/code_maat/core.clj
+7	2	test/code_maat/analysis/authors_test.clj
+6	2	test/code_maat/analysis/entities_test.clj
+17	10	test/code_maat/analysis/logical_coupling_test.clj
+7	1	test/code_maat/analysis/test_data.clj
+8	5	test/code_maat/end_to_end/scenario_tests.clj
+
+--d30e83d--2013-08-17--Adam Tornhill
+1	1	src/code_maat/app/app.clj
+
+--6e2ecd6--2013-08-17--Adam Tornhill
+12	6	src/code_maat/analysis/logical_coupling.clj
+
+--3bd8360--2013-08-17--Adam Tornhill
+41	8	src/code_maat/analysis/logical_coupling.clj
+32	7	test/code_maat/analysis/logical_coupling_test.clj
+
+--a305436--2013-08-16--Adam Tornhill
+5	3	src/code_maat/analysis/entities.clj
+97	2	src/code_maat/analysis/logical_coupling.clj
+2	2	src/code_maat/app/app.clj
+38	0	test/code_maat/analysis/logical_coupling_test.clj
+
+--bc0d88a--2013-08-16--Adam Tornhill
+32	27	src/code_maat/analysis/logical_coupling.clj
+
+--bd5156c--2013-08-16--Adam Tornhill
+15	8	src/code_maat/analysis/authors.clj
+2	1	test/code_maat/end_to_end/scenario_tests.clj
+
+--d644765--2013-08-16--Adam Tornhill
+18	6	src/code_maat/app/app.clj
+2	1	src/code_maat/core.clj
+
+--49b2371--2013-08-15--Adam Tornhill
+4	17	src/code_maat/analysis/logical_coupling.clj
+
+--6b50ad8--2013-08-15--Adam Tornhill
+12	13	src/code_maat/analysis/authors.clj
+11	11	src/code_maat/analysis/entities.clj
+13	1	src/code_maat/dataset/dataset.clj
+
+--98d54f4--2013-08-15--Adam Tornhill
+28	0	src/code_maat/dataset/dataset.clj
+6	1	test/code_maat/analysis/test_data.clj
+25	0	test/code_maat/dataset/dataset_test.clj
+
+--d8d4bde--2013-08-15--Adam Tornhill
+15	10	src/code_maat/analysis/authors.clj
+3	7	src/code_maat/app/app.clj
+3	1	src/code_maat/core.clj
+4	4	test/code_maat/analysis/authors_test.clj
+
+--291b28d--2013-08-15--Adam Tornhill
+21	7	src/code_maat/analysis/logical_coupling.clj
+4	2	src/code_maat/app/app.clj
+1	2	src/code_maat/core.clj
+19	8	test/code_maat/analysis/logical_coupling_test.clj
+
+--53ec5e2--2013-08-15--Adam Tornhill
+1	1	src/code_maat/analysis/logical_coupling.clj
+10	10	test/code_maat/analysis/logical_coupling_test.clj
+
+--2345015--2013-08-15--Adam Tornhill
+33	2	src/code_maat/analysis/logical_coupling.clj
+11	2	test/code_maat/analysis/logical_coupling_test.clj
+
+--e9fa359--2013-08-15--Adam Tornhill
+16	4	src/code_maat/analysis/entities.clj
+62	10	src/code_maat/analysis/logical_coupling.clj
+8	1	test/code_maat/analysis/entities_test.clj
+24	4	test/code_maat/analysis/logical_coupling_test.clj
+
+--06fa16d--2013-08-13--Adam Tornhill
+2	1	project.clj
+42	0	src/code_maat/analysis/logical_coupling.clj
+2	1	src/code_maat/output/filters.clj
+21	0	test/code_maat/analysis/logical_coupling_test.clj
+9	5	test/code_maat/end_to_end/scenario_tests.clj
+
+--8f70dd9--2013-08-13--Adam Tornhill
+3	1	project.clj
+14	2	src/code_maat/app/app.clj
+24	7	src/code_maat/core.clj
+9	6	test/code_maat/end_to_end/scenario_tests.clj
+
+--83ebd09--2013-08-12--Adam Tornhill
+3	15	src/code_maat/app/app.clj
+8	2	src/code_maat/core.clj
+14	0	src/code_maat/output/csv.clj
+5	0	src/code_maat/output/filters.clj
+11	2	test/code_maat/end_to_end/scenario_tests.clj
+
+--dd292a3--2013-08-12--Adam Tornhill
+0	2	src/code_maat/parsers/svn.clj
+
+--f0cb681--2013-08-12--Adam Tornhill
+19	6	src/code_maat/parsers/svn.clj
+13	1	test/code_maat/parsers/svn_test.clj
+
+--3cfb874--2013-08-12--Adam Tornhill
+3	9	src/code_maat/analysis/authors.clj
+21	2	src/code_maat/analysis/entities.clj
+8	0	src/code_maat/analysis/workarounds.clj
+14	4	src/code_maat/app/app.clj
+9	1	src/code_maat/parsers/svn.clj
+2	7	test/code_maat/analysis/authors_test.clj
+6	1	test/code_maat/analysis/entities_test.clj
+9	4	test/code_maat/analysis/test_data.clj
+
+--4951c82--2013-08-12--Adam Tornhill
+4	1	src/code_maat/analysis/authors.clj
+26	3	test/code_maat/analysis/authors_test.clj
+1	2	test/code_maat/analysis/test_data.clj
+
+--50d1b02--2013-08-12--Adam Tornhill
+9	6	src/code_maat/analysis/authors.clj
+10	6	src/code_maat/app/app.clj
+12	4	src/code_maat/parsers/svn.clj
+6	1	test/code_maat/parsers/svn_test.clj
+
+--2a3365c--2013-08-11--Adam Tornhill
+2	1	project.clj
+35	28	src/code_maat/analysis/authors.clj
+23	0	src/code_maat/app/app.clj
+4	5	src/code_maat/core.clj
+18	13	src/code_maat/parsers/svn.clj
+8	0	test/code_maat/end_to_end/scenario_tests.clj
+34	0	test/code_maat/end_to_end/simple.xml
+22	23	test/code_maat/parsers/svn_test.clj
+
+--64868e5--2013-08-09--Adam Tornhill
+2	1	project.clj
+32	0	src/code_maat/parsers/svn.clj
+12	0	src/code_maat/parsers/xml.clj
+78	0	test/code_maat/parsers/svn_test.clj
+
+--8e7b6fb--2013-08-09--Adam Tornhill
+1	0	.gitignore
+
+--97dc286--2013-08-09--Adam Tornhill
+4	8	src/code_maat/analysis/authors.clj
+6	0	src/code_maat/analysis/entities.clj
+3	11	test/code_maat/analysis/authors_test.clj
+8	0	test/code_maat/analysis/entities_test.clj
+10	0	test/code_maat/analysis/test_data.clj
+
+--0f9f72a--2013-08-09--Adam Tornhill
+11	0	.gitignore
+13	0	README.md
+3	0	doc/intro.md
+7	0	project.clj
+46	0	src/code_maat/analysis/authors.clj
+6	0	src/code_maat/core.clj
+17	0	test/code_maat/analysis/authors_test.clj

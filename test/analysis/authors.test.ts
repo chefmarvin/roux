@@ -6,8 +6,8 @@ describe("authors", () => {
   test("sorts entities by max number of authors descending", () => {
     const result = authors(vcs, lowThresholds);
     expect(result).toEqual([
-      { entity: "A", nAuthors: 2, nRevs: 3 },
-      { entity: "B", nAuthors: 1, nRevs: 1 },
+      { entity: "A", "n-authors": 2, "n-revs": 3 },
+      { entity: "B", "n-authors": 1, "n-revs": 1 },
     ]);
   });
 });

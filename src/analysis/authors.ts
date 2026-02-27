@@ -15,11 +15,11 @@ export function authors(
     if (uniqueRevs.size >= options.minRevs) {
       result.push({
         entity: entity as string,
-        nAuthors: uniqueAuthors.size,
-        nRevs: uniqueRevs.size,
+        "n-authors": uniqueAuthors.size,
+        "n-revs": uniqueRevs.size,
       });
     }
   }
 
-  return orderBy(result, "nAuthors", "desc");
+  return orderBy(result, "n-authors", "desc");
 }

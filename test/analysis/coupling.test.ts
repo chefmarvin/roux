@@ -29,9 +29,9 @@ describe("coupling", () => {
   test("calculates coupling degree between co-changing entities", () => {
     const result = coupling(coupled, opts);
     expect(result).toEqual([
-      { entity: "A", coupled: "B", degree: 100, averageRevs: 2 },
-      { entity: "A", coupled: "C", degree: 66, averageRevs: 2 },
-      { entity: "B", coupled: "C", degree: 66, averageRevs: 2 },
+      { entity: "A", coupled: "B", degree: 100, "average-revs": 2 },
+      { entity: "A", coupled: "C", degree: 66, "average-revs": 2 },
+      { entity: "B", coupled: "C", degree: 66, "average-revs": 2 },
     ]);
   });
 });

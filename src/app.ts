@@ -28,7 +28,11 @@ export function run(opts: AppOptions): string {
 
   const text = getLogText(opts);
   const modifications = parseGit2Log(text);
-  const options: AnalysisOptions = { ...defaultOptions, ...opts };
+  // Filter out undefined values so defaults aren't overridden
+  const defined = Object.fromEntries(
+    Object.entries(opts).filter(([, v]) => v !== undefined)
+  );
+  const options: AnalysisOptions = { ...defaultOptions, ...defined };
   let result = analysisFn(modifications, options);
 
   if (opts.rows && opts.rows > 0) {

@@ -73,7 +73,7 @@ export function coupling(
         entity: e1,
         coupled: e2,
         degree,
-        averageRevs: avgRevsRounded,
+        "average-revs": avgRevsRounded,
       });
     }
   }
@@ -96,7 +96,9 @@ export function sumOfCoupling(
 
   const result: Record<string, unknown>[] = [];
   for (const [entity, value] of soc) {
-    result.push({ entity, soc: value });
+    if (value > options.minRevs) {
+      result.push({ entity, soc: value });
+    }
   }
 
   return orderBy(result, "soc", "desc");

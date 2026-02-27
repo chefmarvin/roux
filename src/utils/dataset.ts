@@ -24,7 +24,18 @@ export function orderBy<T>(
   sorted.sort((a, b) => {
     const va = a[key] as number;
     const vb = b[key] as number;
-    return direction === "desc" ? vb - va : va - vb;
+    const cmp = direction === "desc" ? vb - va : va - vb;
+    if (cmp !== 0) return cmp;
+    // Stable tie-break: sort alphabetically by first string field
+    const strKey = Object.keys(a as Record<string, unknown>).find(
+      (k) => typeof (a as Record<string, unknown>)[k] === "string"
+    );
+    if (strKey) {
+      const sa = (a as Record<string, unknown>)[strKey] as string;
+      const sb = (b as Record<string, unknown>)[strKey] as string;
+      return sa.localeCompare(sb);
+    }
+    return 0;
   });
   return sorted;
 }

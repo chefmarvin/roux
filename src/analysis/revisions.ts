@@ -14,10 +14,10 @@ export function revisions(
     if (uniqueRevs.size >= options.minRevs) {
       result.push({
         entity: entity as string,
-        nRevs: uniqueRevs.size,
+        "n-revs": uniqueRevs.size,
       });
     }
   }
 
-  return orderBy(result, "nRevs", "desc");
+  return orderBy(result, "n-revs", "desc");
 }
