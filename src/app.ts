@@ -3,7 +3,11 @@ import { parseGit2Log } from "./parsers/git2";
 import { analyses } from "./analysis";
 import { defaultOptions, type AnalysisOptions } from "./analysis/types";
 import { toCSV } from "./output/csv";
+import { toJSON } from "./output/json";
 import { generateGitLog } from "./git";
+import { parseGroupFile, applyGrouping } from "./transforms/grouper";
+import { parseTeamMap, applyTeamMapping } from "./transforms/team-mapper";
+import { applyTemporalGrouping } from "./transforms/temporal-grouper";
 
 export interface AppOptions extends Partial<AnalysisOptions> {
   log?: string;         // log file path
@@ -27,17 +31,31 @@ export function run(opts: AppOptions): string {
   }
 
   const text = getLogText(opts);
-  const modifications = parseGit2Log(text);
+  let modifications = parseGit2Log(text);
   // Filter out undefined values so defaults aren't overridden
   const defined = Object.fromEntries(
     Object.entries(opts).filter(([, v]) => v !== undefined)
   );
   const options: AnalysisOptions = { ...defaultOptions, ...defined };
+
+  if (options.groupFile) {
+    const specs = parseGroupFile(readFileSync(options.groupFile, "utf-8"));
+    modifications = applyGrouping(modifications, specs);
+  }
+  if (options.temporalPeriod) {
+    modifications = applyTemporalGrouping(modifications, options.temporalPeriod);
+  }
+  if (options.teamMapFile) {
+    const teamMap = parseTeamMap(readFileSync(options.teamMapFile, "utf-8"));
+    modifications = applyTeamMapping(modifications, teamMap);
+  }
+
   let result = analysisFn(modifications, options);
 
   if (opts.rows && opts.rows > 0) {
     result = result.slice(0, opts.rows);
   }
 
-  return toCSV(result);
+  const formatter = options.outputFormat === "json" ? toJSON : toCSV;
+  return formatter(result);
 }
