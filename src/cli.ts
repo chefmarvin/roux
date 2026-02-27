@@ -19,7 +19,13 @@ function addSharedOptions(cmd: Command): Command {
     .option("-m, --min-shared-revs <n>", "Min shared revisions", parseInt)
     .option("-i, --min-coupling <n>", "Min coupling %", parseInt)
     .option("-x, --max-coupling <n>", "Max coupling %", parseInt)
-    .option("-s, --max-changeset-size <n>", "Max changeset size", parseInt);
+    .option("-s, --max-changeset-size <n>", "Max changeset size", parseInt)
+    .option("-o, --output-format <format>", "Output format: csv or json", "csv")
+    .option("-g, --group <file>", "Architectural group specification file")
+    .option("-p, --team-map <file>", "Team/person mapping CSV file")
+    .option("-t, --temporal-period <days>", "Temporal period in days", parseInt)
+    .option("-d, --age-time-now <date>", "Reference date for age analysis (YYYY-MM-DD)")
+    .option("-e, --expression-to-match <regex>", "Regex for message matching");
 }
 
 // Check if stdin has data (pipe mode)
@@ -50,6 +56,12 @@ for (const name of Object.keys(analyses)) {
         minCoupling: opts.minCoupling,
         maxCoupling: opts.maxCoupling,
         maxChangesetSize: opts.maxChangesetSize,
+        outputFormat: opts.outputFormat,
+        groupFile: opts.group,
+        teamMapFile: opts.teamMap,
+        temporalPeriod: opts.temporalPeriod,
+        ageTimeNow: opts.ageTimeNow,
+        expressionToMatch: opts.expressionToMatch,
       });
       process.stdout.write(output);
     } catch (e: unknown) {

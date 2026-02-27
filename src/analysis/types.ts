@@ -7,6 +7,12 @@ export interface AnalysisOptions {
   maxCoupling: number;       // default 100
   maxChangesetSize: number;  // default 30
   verboseResults?: boolean;
+  ageTimeNow?: string;          // -d flag, "YYYY-MM-DD"
+  expressionToMatch?: string;   // -e flag, regex pattern
+  groupFile?: string;           // -g flag, path to group spec
+  teamMapFile?: string;         // -p flag, path to team CSV
+  temporalPeriod?: number;      // -t flag, days in sliding window
+  outputFormat?: "csv" | "json"; // -o flag
 }
 
 export const defaultOptions: AnalysisOptions = {
