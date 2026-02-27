@@ -74,33 +74,66 @@ Roux 支持 18 种分析：
 
 ### When to Use Each Analysis / 各分析使用场景
 
+> Examples below use [code-maat](https://github.com/adamtornhill/code-maat) as sample repo, filtered to 2014–2015.
+>
+> 以下示例使用 code-maat 仓库，筛选 2014–2015 年的数据。
+
 #### Code Hotspots & Complexity / 代码热点与复杂度
 
 **`summary`** — Quick overview of project scale / 快速了解项目规模
 ```bash
-npx roux summary --repo /path/to/repo
+$ npx roux summary --repo /path/to/repo --after 2014-01-01 --before 2016-01-01
+statistic,value
+number-of-commits,138
+number-of-entities,65
+number-of-entities-changed,292
+number-of-authors,8
 ```
 
 **`revisions`** — Find most frequently modified files (hotspots) / 找出修改最频繁的文件（热点）
 ```bash
-npx roux revisions --after 2024-01-01 -n 3
+$ npx roux revisions --after 2014-01-01 --before 2016-01-01 -n 3 -r 5
+entity,n-revs
+project.clj,41
+src/code_maat/app/app.clj,26
+src/code_maat/cmd_line.clj,21
+README.md,18
+src/code_maat/parsers/hiccup_based_parser.clj,14
 ```
 
 **`age`** — Find code that hasn't changed in a long time (stable infrastructure or forgotten debt) / 找出长期未修改的代码（可能是稳定的基础设施，也可能是被遗忘的技术债）
 ```bash
-npx roux age -r 20
+$ npx roux age --after 2014-01-01 --before 2016-01-01 -d 2016-01-01 -n 3 -r 5
+entity,age-months
+src/code_maat/app/layer_mapper.clj,1
+README.md,2
+src/code_maat/parsers/git.clj,3
+test/code_maat/parsers/git_test.clj,3
+.travis.yml,4
 ```
 
 #### Code Coupling / 代码耦合
 
 **`coupling`** — Find files that often change together (implicit dependencies) / 找出经常一起修改的文件对（隐式依赖）
 ```bash
-npx roux coupling --after 2024-01-01 -m 3
+$ npx roux coupling --after 2014-01-01 --before 2016-01-01 -m 3 -r 5
+entity,coupled,degree,average-revs
+src/code_maat/analysis/churn.clj,test/code_maat/analysis/churn_test.clj,80,5
+src/code_maat/parsers/git.clj,src/code_maat/parsers/mercurial.clj,80,8
+src/code_maat/parsers/git.clj,test/code_maat/parsers/git_test.clj,75,8
+src/code_maat/parsers/hiccup_based_parser.clj,test/code_maat/parsers/git_test.clj,54,11
+src/code_maat/parsers/mercurial.clj,test/code_maat/parsers/git_test.clj,53,8
 ```
 
 **`soc`** — Sum of coupling per file. High soc = "God file" that's coupled to too many others, risky to change / 每个文件的耦合度总和。高 soc = God 文件，与过多文件耦合，改动风险大
 ```bash
-npx roux soc -m 3
+$ npx roux soc --after 2014-01-01 --before 2016-01-01 -m 3 -r 5
+entity,soc
+src/code_maat/app/app.clj,68
+test/code_maat/end_to_end/scenario_tests.clj,53
+src/code_maat/cmd_line.clj,50
+project.clj,43
+src/code_maat/parsers/git.clj,34
 ```
 
 **`messages`** — Match commit message patterns (e.g. "Fix", "Bug") / 按 commit message 匹配模式
@@ -132,9 +165,15 @@ npx roux author-churn --rev v1.0..v2.0
 npx roux entity-ownership -r 10
 ```
 
-**`main-dev`** — Primary developer per file (by lines added) / 每个文件的主要开发者（按新增行数）
+**`main-dev`** — Primary developer per file (by lines added). Ownership < 0.5 means no clear owner / 每个文件的主要开发者（按新增行数）。ownership < 0.5 表示没有明确负责人
 ```bash
-npx roux main-dev --after 2024-01-01
+$ npx roux main-dev --after 2014-01-01 --before 2016-01-01 -n 3 -r 5
+entity,main-dev,added,total-added,ownership
+.gitignore,Adam Tornhill,1,1,1.0
+.mailmap,Felipe Knorr Kuhn,3,3,1.0
+.travis.yml,Andrea Crotti,7,7,1.0
+project.clj,Adam Tornhill,54,54,1.0
+README.md,Adam Tornhill,105,118,0.89
 ```
 
 **`main-dev-by-revs`** — Primary developer per file (by commit count) / 按 commit 次数计算的主要开发者
@@ -383,21 +422,6 @@ const result2 = analyze({
 const log = fs.readFileSync("git.log", "utf-8");
 const mods = parseGitLog(log);
 const result3 = analyze({ analysis: "summary", input: log });
-```
-
-## Project Structure / 项目结构
-
-```
-src/
-├── analysis/           # 18 analysis implementations / 18 种分析实现
-├── parsers/            # git2 and git log parsers / git2 和 git 日志解析器
-├── transforms/         # grouper, team-mapper, temporal-grouper / 分组、团队映射、时间窗口
-├── output/             # CSV and JSON formatters / CSV 和 JSON 格式化
-├── utils/              # groupBy, orderBy helpers / 工具函数
-├── app.ts              # Pipeline orchestration / 流水线编排
-├── cli.ts              # CLI interface / 命令行接口
-├── git.ts              # Git log generation / Git 日志生成
-└── index.ts            # Public API / 公共 API
 ```
 
 ## Development / 开发
