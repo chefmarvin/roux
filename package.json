@@ -4,7 +4,7 @@
   "description": "Mine and analyze git history — find hotspots, coupling, ownership patterns, and team dynamics",
   "type": "module",
   "bin": {
-    "roux": "./dist/cli.js"
+    "roux": "dist/cli.js"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,7 +36,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chefmarvin/roux.git"
+    "url": "git+https://github.com/chefmarvin/roux.git"
   },
   "dependencies": {
     "commander": "^14"
