@@ -86,7 +86,7 @@ npx roux summary --repo /path/to/repo
 npx roux revisions --after 2024-01-01 -n 3
 ```
 
-**`age`** — Find long-unmaintained code / 找出长期无人维护的代码
+**`age`** — Find code that hasn't changed in a long time (stable infrastructure or forgotten debt) / 找出长期未修改的代码（可能是稳定的基础设施，也可能是被遗忘的技术债）
 ```bash
 npx roux age -r 20
 ```
