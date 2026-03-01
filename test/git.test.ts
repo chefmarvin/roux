@@ -80,4 +80,15 @@ describe("generateGitLog", () => {
   test("throws on invalid repo path", () => {
     expect(() => generateGitLog({ repo: "/nonexistent/path" })).toThrow();
   });
+
+  test("followRenames=true (default) generates log with -M (rename detection)", () => {
+    const log = generateGitLog({ repo: REPO });
+    // Should succeed without error — -M is valid git flag
+    expect(log.length).toBeGreaterThan(0);
+  });
+
+  test("followRenames=false generates log with --no-renames", () => {
+    const log = generateGitLog({ repo: REPO, followRenames: false });
+    expect(log.length).toBeGreaterThan(0);
+  });
 });

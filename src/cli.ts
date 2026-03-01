@@ -29,7 +29,8 @@ function addSharedOptions(cmd: Command): Command {
     .option("-c, --format <format>", "Input log format: git2 or git", "git2")
     .option("--after <date>", "Only commits after date (YYYY-MM-DD)")
     .option("--before <date>", "Only commits before date (YYYY-MM-DD)")
-    .option("--rev <range>", "Git revision range (e.g. v1.0..v2.0)");
+    .option("--rev <range>", "Git revision range (e.g. v1.0..v2.0)")
+    .option("--no-follow-renames", "Disable rename tracking (treat renames as delete + add)");
 }
 
 // Check if stdin has data (pipe mode)
@@ -70,6 +71,7 @@ for (const name of Object.keys(analyses)) {
         after: opts.after,
         before: opts.before,
         rev: opts.rev,
+        followRenames: opts.followRenames,
       });
       process.stdout.write(output);
     } catch (e: unknown) {

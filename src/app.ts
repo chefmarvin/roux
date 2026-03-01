@@ -8,6 +8,7 @@ import { generateGitLog } from "./git";
 import { parseGroupConfig, applyGrouping } from "./transforms/grouper";
 import { parseTeamConfig, applyTeamMapping } from "./transforms/team-mapper";
 import { applyTemporalGrouping } from "./transforms/temporal-grouper";
+import { applyRenameTracking } from "./transforms/rename-tracker";
 
 export interface AppOptions extends Partial<AnalysisOptions> {
   log?: string;         // log file path
@@ -18,12 +19,13 @@ export interface AppOptions extends Partial<AnalysisOptions> {
   after?: string;       // --after=2024-01-01
   before?: string;      // --before=2025-01-01
   rev?: string;         // v1.0..v2.0
+  followRenames?: boolean; // default true
 }
 
 function getLogText(opts: AppOptions): string {
   if (opts.input) return opts.input;
   if (opts.log) return readFileSync(opts.log, "utf-8");
-  return generateGitLog({ repo: opts.repo, after: opts.after, before: opts.before, rev: opts.rev });
+  return generateGitLog({ repo: opts.repo, after: opts.after, before: opts.before, rev: opts.rev, followRenames: opts.followRenames });
 }
 
 export function run(opts: AppOptions): string {
@@ -46,6 +48,10 @@ export function run(opts: AppOptions): string {
     throw new Error(`Unknown log format "${format}". Available: ${Object.keys(parsers).join(", ")}`);
   }
   let modifications = parser(text);
+
+  if (opts.followRenames !== false) {
+    modifications = applyRenameTracking(modifications);
+  }
 
   if (options.groupFile) {
     const specs = parseGroupConfig(options.groupFile);

@@ -5,5 +5,6 @@ export interface Modification {
   date: string;        // "YYYY-MM-DD"
   locAdded: number;    // -1 for binary files
   locDeleted: number;  // -1 for binary files
-  message?: string;    // commit message (optional, for messages analysis)
+  message?: string;       // commit message (optional, for messages analysis)
+  renamedFrom?: string;   // previous path if file was renamed
 }

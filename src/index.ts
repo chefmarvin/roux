@@ -7,3 +7,5 @@ export type { GitLogOptions } from "./git";
 export { analyses } from "./analysis";
 export type { Modification } from "./parsers/types";
 export type { AnalysisFn, AnalysisOptions } from "./analysis/types";
+export { applyRenameTracking, buildRenameMap } from "./transforms/rename-tracker";
+export { parseRenamePath } from "./parsers/rename";

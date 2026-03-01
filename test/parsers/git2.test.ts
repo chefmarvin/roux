@@ -86,4 +86,36 @@ describe("git2 parser", () => {
     const result = parseGit2Log(log);
     expect(result[0].message).toBe("msg with -- dashes");
   });
+
+  test("parses brace rename numstat line", () => {
+    const log = "--abc123--2024-01-15--Author\n5\t3\tsrc/{old => new}/file.ts\n";
+    const result = parseGit2Log(log);
+    expect(result[0].entity).toBe("src/new/file.ts");
+    expect(result[0].renamedFrom).toBe("src/old/file.ts");
+  });
+
+  test("parses full path rename numstat line", () => {
+    const log = "--abc123--2024-01-15--Author\n2\t1\tfoo.ts => bar/foo.ts\n";
+    const result = parseGit2Log(log);
+    expect(result[0].entity).toBe("bar/foo.ts");
+    expect(result[0].renamedFrom).toBe("foo.ts");
+  });
+
+  test("ordinary line has no renamedFrom", () => {
+    const log = "--abc123--2024-01-15--Author\n1\t0\tsrc/foo.ts\n";
+    const result = parseGit2Log(log);
+    expect(result[0].renamedFrom).toBeUndefined();
+  });
+
+  test("mixed rename and ordinary lines in same commit", () => {
+    const log = [
+      "--abc123--2024-01-15--Author",
+      "5\t3\tsrc/{old => new}/file.ts",
+      "1\t0\tsrc/other.ts",
+    ].join("\n");
+    const result = parseGit2Log(log);
+    expect(result).toHaveLength(2);
+    expect(result[0].renamedFrom).toBe("src/old/file.ts");
+    expect(result[1].renamedFrom).toBeUndefined();
+  });
 });

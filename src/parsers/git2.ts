@@ -1,4 +1,5 @@
 import type { Modification } from "./types";
+import { parseRenamePath } from "./rename";
 
 const DELIM = "--";
 const NUMSTAT_RE = /^(\d+|-)\t(\d+|-)\t(.+)$/;
@@ -57,8 +58,10 @@ export function parseGit2Log(text: string): Modification[] {
     if (numstatMatch && currentRev) {
       const added = numstatMatch[1];
       const deleted = numstatMatch[2];
+      const rawPath = numstatMatch[3];
+      const rename = parseRenamePath(rawPath);
       const mod: Modification = {
-        entity: numstatMatch[3],
+        entity: rename ? rename.newPath : rawPath,
         author: currentAuthor,
         rev: currentRev,
         date: currentDate,
@@ -67,6 +70,9 @@ export function parseGit2Log(text: string): Modification[] {
       };
       if (currentMessage !== undefined) {
         mod.message = currentMessage;
+      }
+      if (rename) {
+        mod.renamedFrom = rename.oldPath;
       }
       result.push(mod);
     }

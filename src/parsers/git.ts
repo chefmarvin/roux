@@ -1,4 +1,5 @@
 import type { Modification } from "./types";
+import { parseRenamePath } from "./rename";
 
 // [hash] author YYYY-MM-DD message
 // The date is the FIRST occurrence of YYYY-MM-DD pattern after the "]"
@@ -31,15 +32,21 @@ export function parseGitLog(text: string): Modification[] {
     if (numstatMatch && currentRev) {
       const added = numstatMatch[1];
       const deleted = numstatMatch[2];
-      result.push({
-        entity: numstatMatch[3],
+      const rawPath = numstatMatch[3];
+      const rename = parseRenamePath(rawPath);
+      const mod: Modification = {
+        entity: rename ? rename.newPath : rawPath,
         author: currentAuthor,
         rev: currentRev,
         date: currentDate,
         locAdded: added === "-" ? -1 : parseInt(added, 10),
         locDeleted: deleted === "-" ? -1 : parseInt(deleted, 10),
         message: currentMessage,
-      });
+      };
+      if (rename) {
+        mod.renamedFrom = rename.oldPath;
+      }
+      result.push(mod);
     }
   }
 
