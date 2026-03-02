@@ -92,4 +92,36 @@ describe("git format parser", () => {
     expect(result[0].message).toBe("(JIRA-789) Some text (see mails of 2016-03-11).");
     expect(result[1].entity).toBe("OtherProject.UnitTests/OtherSpec.cs");
   });
+
+  test("parses brace rename numstat line", () => {
+    const log = "[abc1234] Alice 2024-01-15 rename stuff\n5\t3\tsrc/{old => new}/file.ts\n";
+    const result = parseGitLog(log);
+    expect(result[0].entity).toBe("src/new/file.ts");
+    expect(result[0].renamedFrom).toBe("src/old/file.ts");
+  });
+
+  test("parses full path rename numstat line", () => {
+    const log = "[abc1234] Alice 2024-01-15 move file\n2\t1\tfoo.ts => bar/foo.ts\n";
+    const result = parseGitLog(log);
+    expect(result[0].entity).toBe("bar/foo.ts");
+    expect(result[0].renamedFrom).toBe("foo.ts");
+  });
+
+  test("ordinary line has no renamedFrom", () => {
+    const log = "[abc1234] Alice 2024-01-15 edit\n1\t0\tsrc/foo.ts\n";
+    const result = parseGitLog(log);
+    expect(result[0].renamedFrom).toBeUndefined();
+  });
+
+  test("mixed rename and ordinary lines in same commit", () => {
+    const log = [
+      "[abc1234] Alice 2024-01-15 refactor",
+      "5\t3\tsrc/{old => new}/file.ts",
+      "1\t0\tsrc/other.ts",
+    ].join("\n");
+    const result = parseGitLog(log);
+    expect(result).toHaveLength(2);
+    expect(result[0].renamedFrom).toBe("src/old/file.ts");
+    expect(result[1].renamedFrom).toBeUndefined();
+  });
 });
