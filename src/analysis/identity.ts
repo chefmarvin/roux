@@ -1,5 +1,5 @@
-import type { Modification } from "../parsers/types";
-import type { AnalysisOptions } from "./types";
+import type { Modification } from "../parsers/types.js";
+import type { AnalysisOptions } from "./types.js";
 
 export function identity(
   data: Modification[],

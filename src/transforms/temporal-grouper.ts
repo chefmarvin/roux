@@ -1,4 +1,4 @@
-import type { Modification } from "../parsers/types";
+import type { Modification } from "../parsers/types.js";
 
 export function applyTemporalGrouping(
   data: Modification[],

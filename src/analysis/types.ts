@@ -1,4 +1,4 @@
-import type { Modification } from "../parsers/types";
+import type { Modification } from "../parsers/types.js";
 
 export interface AnalysisOptions {
   minRevs: number;           // default 5

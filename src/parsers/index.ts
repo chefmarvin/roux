@@ -1,5 +1,5 @@
-import { parseGit2Log } from "./git2";
-import { parseGitLog } from "./git";
+import { parseGit2Log } from "./git2.js";
+import { parseGitLog } from "./git.js";
 
 export const parsers = {
   git2: parseGit2Log,

@@ -1,6 +1,6 @@
-import type { Modification } from "../parsers/types";
-import type { AnalysisOptions } from "./types";
-import { groupBy, orderBy } from "../utils/dataset";
+import type { Modification } from "../parsers/types.js";
+import type { AnalysisOptions } from "./types.js";
+import { groupBy, orderBy } from "../utils/dataset.js";
 
 /** Normalize binary (-1) to 0 for churn calculations */
 function loc(value: number): number {

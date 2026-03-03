@@ -1,6 +1,6 @@
-import type { Modification } from "../parsers/types";
-import type { AnalysisOptions } from "./types";
-import { groupBy } from "../utils/dataset";
+import type { Modification } from "../parsers/types.js";
+import type { AnalysisOptions } from "./types.js";
+import { groupBy } from "../utils/dataset.js";
 
 /** Normalize binary (-1) to 0 */
 function loc(value: number): number {

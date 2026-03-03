@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 import { extname } from "path";
-import type { Modification } from "../parsers/types";
+import type { Modification } from "../parsers/types.js";
 
 export interface GroupSpec {
   pattern: RegExp;

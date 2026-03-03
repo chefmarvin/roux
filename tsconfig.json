@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "strict": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
     "outDir": "dist",
     "rootDir": "src",

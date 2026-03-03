@@ -1,6 +1,6 @@
-import type { Modification } from "../parsers/types";
-import type { AnalysisOptions } from "./types";
-import { groupBy, orderBy } from "../utils/dataset";
+import type { Modification } from "../parsers/types.js";
+import type { AnalysisOptions } from "./types.js";
+import { groupBy, orderBy } from "../utils/dataset.js";
 
 /** Parse "YYYY-MM-DD" into { year, month, day } without timezone issues */
 function parseYMD(dateStr: string): { year: number; month: number; day: number } {

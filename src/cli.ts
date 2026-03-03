@@ -1,6 +1,6 @@
 import { Command } from "commander";
-import { run } from "./app";
-import { analyses } from "./analysis";
+import { run } from "./app.js";
+import { analyses } from "./analysis/index.js";
 
 const program = new Command();
 

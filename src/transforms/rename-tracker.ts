@@ -1,4 +1,4 @@
-import type { Modification } from "../parsers/types";
+import type { Modification } from "../parsers/types.js";
 
 /**
  * Build a map from old paths to their final (most recent) path,

@@ -1,5 +1,5 @@
-import type { Modification } from "./types";
-import { parseRenamePath } from "./rename";
+import type { Modification } from "./types.js";
+import { parseRenamePath } from "./rename.js";
 
 const DELIM = "--";
 const NUMSTAT_RE = /^(\d+|-)\t(\d+|-)\t(.+)$/;

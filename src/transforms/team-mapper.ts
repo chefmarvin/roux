@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 import { extname } from "path";
-import type { Modification } from "../parsers/types";
+import type { Modification } from "../parsers/types.js";
 
 export function parseTeamCSV(csvText: string): Map<string, string> {
   const map = new Map<string, string>();

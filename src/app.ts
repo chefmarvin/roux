@@ -1,14 +1,14 @@
 import { readFileSync } from "fs";
-import { parsers, type VcsType } from "./parsers";
-import { analyses, analysisHeaders } from "./analysis";
-import { defaultOptions, type AnalysisOptions } from "./analysis/types";
-import { toCSV } from "./output/csv";
-import { toJSON } from "./output/json";
-import { generateGitLog } from "./git";
-import { parseGroupConfig, applyGrouping } from "./transforms/grouper";
-import { parseTeamConfig, applyTeamMapping } from "./transforms/team-mapper";
-import { applyTemporalGrouping } from "./transforms/temporal-grouper";
-import { applyRenameTracking } from "./transforms/rename-tracker";
+import { parsers, type VcsType } from "./parsers/index.js";
+import { analyses, analysisHeaders } from "./analysis/index.js";
+import { defaultOptions, type AnalysisOptions } from "./analysis/types.js";
+import { toCSV } from "./output/csv.js";
+import { toJSON } from "./output/json.js";
+import { generateGitLog } from "./git.js";
+import { parseGroupConfig, applyGrouping } from "./transforms/grouper.js";
+import { parseTeamConfig, applyTeamMapping } from "./transforms/team-mapper.js";
+import { applyTemporalGrouping } from "./transforms/temporal-grouper.js";
+import { applyRenameTracking } from "./transforms/rename-tracker.js";
 
 export interface AppOptions extends Partial<AnalysisOptions> {
   log?: string;         // log file path

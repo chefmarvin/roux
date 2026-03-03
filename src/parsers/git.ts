@@ -1,5 +1,5 @@
-import type { Modification } from "./types";
-import { parseRenamePath } from "./rename";
+import type { Modification } from "./types.js";
+import { parseRenamePath } from "./rename.js";
 
 // [hash] author YYYY-MM-DD message
 // The date is the FIRST occurrence of YYYY-MM-DD pattern after the "]"

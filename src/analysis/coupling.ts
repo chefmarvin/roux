@@ -1,6 +1,6 @@
-import type { Modification } from "../parsers/types";
-import type { AnalysisOptions } from "./types";
-import { groupBy, orderBy } from "../utils/dataset";
+import type { Modification } from "../parsers/types.js";
+import type { AnalysisOptions } from "./types.js";
+import { groupBy, orderBy } from "../utils/dataset.js";
 
 /** Group modifications by revision, return map of rev → entities */
 function entitiesByRevision(

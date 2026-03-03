@@ -1,6 +1,6 @@
-import type { Modification } from "../parsers/types";
-import type { AnalysisOptions } from "./types";
-import { groupBy } from "../utils/dataset";
+import type { Modification } from "../parsers/types.js";
+import type { AnalysisOptions } from "./types.js";
+import { groupBy } from "../utils/dataset.js";
 
 /** Format ownership ratio to match code-maat's Clojure double formatting */
 function formatOwnership(ratio: number): string {
