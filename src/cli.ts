@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { Command } from "commander";
 import { run } from "./app.js";
 import { analyses } from "./analysis/index.js";
