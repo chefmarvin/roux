@@ -1,4 +1,8 @@
-import { describe, test, expect } from "@jest/globals";
+import { describe, test, expect, beforeEach, afterEach } from "@jest/globals";
+import { execFileSync } from "child_process";
+import { mkdtempSync, writeFileSync, rmSync } from "fs";
+import { tmpdir } from "os";
+import { join } from "path";
 import { generateGitLog } from "../src/git";
 
 const REPO = process.env.CODE_MAAT_REPO ?? `${process.env.HOME}/Documents/github/code-maat`;
@@ -90,5 +94,42 @@ describe("generateGitLog", () => {
   test("followRenames=false generates log with --no-renames", () => {
     const log = generateGitLog({ repo: REPO, followRenames: false });
     expect(log.length).toBeGreaterThan(0);
+  });
+});
+
+describe("date boundaries", () => {
+  const BOUNDARY = "2025-09-01";
+  let repo: string;
+
+  beforeEach(() => {
+    repo = mkdtempSync(join(tmpdir(), "roux-dates-"));
+    const at = `${BOUNDARY}T12:00:00`;
+    const git = (...args: string[]) =>
+      execFileSync("git", args, {
+        cwd: repo,
+        stdio: ["ignore", "pipe", "ignore"],
+        env: { ...process.env, GIT_AUTHOR_DATE: at, GIT_COMMITTER_DATE: at },
+      });
+
+    git("init", "-q");
+    git("config", "user.email", "t@example.com");
+    git("config", "user.name", "T");
+    writeFileSync(join(repo, "a.ts"), "const a = 1;\n");
+    git("add", "-A");
+    git("commit", "-m", "midday on the boundary");
+  });
+
+  afterEach(() => rmSync(repo, { recursive: true, force: true }));
+
+  // git resolves a bare date through approxidate, which fills the missing
+  // time from the clock rather than from midnight, so a commit made earlier
+  // in the day falls outside --after=<that day> depending on when the
+  // analysis runs. The range must mean the whole day at both ends.
+  test("--after keeps commits made on the boundary date", () => {
+    expect(extractDates(generateGitLog({ repo, after: BOUNDARY }))).toEqual([BOUNDARY]);
+  });
+
+  test("--before keeps commits made on the boundary date", () => {
+    expect(extractDates(generateGitLog({ repo, before: BOUNDARY }))).toEqual([BOUNDARY]);
   });
 });

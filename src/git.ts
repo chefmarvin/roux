@@ -8,6 +8,25 @@ export interface GitLogOptions {
   followRenames?: boolean; // true (default) → -M, false → --no-renames
 }
 
+const DATE_ONLY = /^\d{4}-\d{2}-\d{2}$/;
+
+/**
+ * Pin a bare date to a specific moment.
+ *
+ * git resolves an underspecified date through approxidate, which fills the
+ * missing time from the current clock rather than from midnight. Left alone,
+ * `--after=2025-09-01` silently skips commits made earlier that day, and how
+ * many it skips depends on what time the analysis runs. Anything already
+ * carrying a time is passed through untouched.
+ */
+function startOfDay(date: string): string {
+  return DATE_ONLY.test(date) ? `${date}T00:00:00` : date;
+}
+
+function endOfDay(date: string): string {
+  return DATE_ONLY.test(date) ? `${date}T23:59:59` : date;
+}
+
 export function generateGitLog(opts: GitLogOptions = {}): string {
   const cwd = opts.repo ?? process.cwd();
   const followRenames = opts.followRenames !== false;
@@ -16,8 +35,8 @@ export function generateGitLog(opts: GitLogOptions = {}): string {
     "--pretty=format:'--%h--%ad--%aN--%s'",
     followRenames ? "-M" : "--no-renames",
   ];
-  if (opts.after)  args.push(`--after=${opts.after}`);
-  if (opts.before) args.push(`--before=${opts.before}`);
+  if (opts.after)  args.push(`--after=${startOfDay(opts.after)}`);
+  if (opts.before) args.push(`--before=${endOfDay(opts.before)}`);
   if (opts.rev) {
     const idx = args.indexOf("--all");
     if (idx !== -1) args.splice(idx, 1);

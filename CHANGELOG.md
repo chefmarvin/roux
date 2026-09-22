@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.3.1
+
+### Fixed
+
+- **`--after` and `--before` dropped commits on the boundary date.** git
+  resolves a bare date through approxidate, which fills in the missing time
+  from the current clock rather than from midnight, so `--after=2025-09-01`
+  skipped commits made earlier that day — and skipped a different number of
+  them depending on what time the analysis ran. Bare dates are now pinned to
+  `T00:00:00` and `T23:59:59`, making the range the whole day at both ends.
+  Values that already carry a time are passed through untouched.
+
+  Only affects `--repo`; analysing a pre-generated log with `-l` was never
+  impacted. The existing tests missed this because they asserted that every
+  returned date fell inside the range, which says nothing about dates that
+  went missing.
+
 ## 0.3.0
 
 Threshold handling now matches code-maat exactly. Output changes for

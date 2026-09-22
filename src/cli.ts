@@ -8,7 +8,7 @@ const program = new Command();
 program
   .name("roux")
   .description("Mine and analyze version control data")
-  .version("0.3.0");
+  .version("0.3.1");
 
 // Shared options for all analysis subcommands
 function addSharedOptions(cmd: Command): Command {
