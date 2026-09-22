@@ -305,7 +305,7 @@ AFTER_LOG=$(mktemp)
 for analysis in "${FILTER_ANALYSES[@]}"; do
   label="filter --after=$AFTER_DATE / $analysis"
   expected=$(cd "$ROUX" && npx tsx src/cli.ts "$analysis" -l "$AFTER_LOG" -n 1 -m 1 -i 1 -s 1000 2>/dev/null || echo "ERROR")
-  actual=$(cd "$ROUX" && npx tsx src/cli.ts "$analysis" --repo "$FILTER_REPO" --after "$AFTER_DATE" -n 1 -m 1 -i 1 -s 1000 2>/dev/null || echo "ERROR")
+  actual=$(cd "$ROUX" && npx tsx src/cli.ts "$analysis" --no-follow-renames --repo "$FILTER_REPO" --after "$AFTER_DATE" -n 1 -m 1 -i 1 -s 1000 2>/dev/null || echo "ERROR")
   run_comparison "$label" "$expected" "$actual" "filter_after" "$analysis"
 done
 
@@ -317,7 +317,7 @@ BEFORE_LOG=$(mktemp)
 for analysis in "${FILTER_ANALYSES[@]}"; do
   label="filter --before=$BEFORE_DATE / $analysis"
   expected=$(cd "$ROUX" && npx tsx src/cli.ts "$analysis" -l "$BEFORE_LOG" -n 1 -m 1 -i 1 -s 1000 2>/dev/null || echo "ERROR")
-  actual=$(cd "$ROUX" && npx tsx src/cli.ts "$analysis" --repo "$FILTER_REPO" --before "$BEFORE_DATE" -n 1 -m 1 -i 1 -s 1000 2>/dev/null || echo "ERROR")
+  actual=$(cd "$ROUX" && npx tsx src/cli.ts "$analysis" --no-follow-renames --repo "$FILTER_REPO" --before "$BEFORE_DATE" -n 1 -m 1 -i 1 -s 1000 2>/dev/null || echo "ERROR")
   run_comparison "$label" "$expected" "$actual" "filter_before" "$analysis"
 done
 
@@ -330,7 +330,7 @@ COMBINED_LOG=$(mktemp)
 for analysis in "${FILTER_ANALYSES[@]}"; do
   label="filter --after=$COMBINED_AFTER --before=$COMBINED_BEFORE / $analysis"
   expected=$(cd "$ROUX" && npx tsx src/cli.ts "$analysis" -l "$COMBINED_LOG" -n 1 -m 1 -i 1 -s 1000 2>/dev/null || echo "ERROR")
-  actual=$(cd "$ROUX" && npx tsx src/cli.ts "$analysis" --repo "$FILTER_REPO" --after "$COMBINED_AFTER" --before "$COMBINED_BEFORE" -n 1 -m 1 -i 1 -s 1000 2>/dev/null || echo "ERROR")
+  actual=$(cd "$ROUX" && npx tsx src/cli.ts "$analysis" --no-follow-renames --repo "$FILTER_REPO" --after "$COMBINED_AFTER" --before "$COMBINED_BEFORE" -n 1 -m 1 -i 1 -s 1000 2>/dev/null || echo "ERROR")
   run_comparison "$label" "$expected" "$actual" "filter_combined" "$analysis"
 done
 
