@@ -23,7 +23,11 @@ export interface AppOptions extends Partial<AnalysisOptions> {
 }
 
 function getLogText(opts: AppOptions): string {
-  if (opts.input) return opts.input;
+  // Compare against undefined, not falsiness: an empty log is a legitimate
+  // answer for a date range with no commits in it. Treating it as "no input
+  // given" sends us to generateGitLog below, which reports on whatever
+  // repository the process is sitting in — silently, with plausible numbers.
+  if (opts.input !== undefined) return opts.input;
   if (opts.log) return readFileSync(opts.log, "utf-8");
   return generateGitLog({ repo: opts.repo, after: opts.after, before: opts.before, rev: opts.rev, followRenames: opts.followRenames });
 }

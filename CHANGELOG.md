@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.2
+
+### Fixed
+
+- **An empty log was treated as no input at all.** `analyze({ input: "" })`
+  fell through to generating a log from the current working directory, so a
+  date range with no commits in it reported on whatever repository the
+  process happened to be sitting in — silently, and with entirely plausible
+  numbers. Now an empty input means an empty history.
+
+  Reached through any caller that slices a range into periods and analyses
+  each one: quiet periods came back full of another repository's data.
+
 ## 0.3.1
 
 ### Fixed
