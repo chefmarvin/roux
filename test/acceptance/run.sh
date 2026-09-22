@@ -73,20 +73,29 @@ run_comparison() {
   fi
 }
 
-# --- Standard analyses ---
+# --- Standard analyses, across the threshold parameter space ---
+# Every set matters: "permissive" disables all four filters and therefore only
+# exercises the aggregation logic, "default" pins the shipped defaults, and
+# "strict" makes each filter actually bite. Bugs have hidden in the two latter
+# columns while permissive stayed green.
+PARAM_SET_NAMES=("permissive" "default" "strict")
+PARAM_SET_ARGS=("-n 1 -m 1 -i 1 -s 1000" "" "-n 10 -m 3 -i 50 -s 20")
+
 for log in "${LOGS[@]}"; do
   logname=$(basename "$log")
+  abs_log="$ROUX/$log"
   for analysis in "${ANALYSES[@]}"; do
-    label="$logname / $analysis"
+    for idx in "${!PARAM_SET_NAMES[@]}"; do
+      set_name="${PARAM_SET_NAMES[$idx]}"
+      # shellcheck disable=SC2206
+      params=(${PARAM_SET_ARGS[$idx]})
+      label="$logname / $analysis [$set_name]"
 
-    # Run code-maat (need absolute path for log file)
-    abs_log="$ROUX/$log"
-    expected=$(cd "$CODE_MAAT" && lein run -l "$abs_log" -c git2 -a "$analysis" -n 1 -m 1 -i 1 -s 1000 2>/dev/null || echo "ERROR")
+      expected=$(cd "$CODE_MAAT" && lein run -l "$abs_log" -c git2 -a "$analysis" ${params[@]+"${params[@]}"} 2>/dev/null || echo "ERROR")
+      actual=$(cd "$ROUX" && npx tsx src/cli.ts "$analysis" -l "$abs_log" ${params[@]+"${params[@]}"} 2>/dev/null || echo "ERROR")
 
-    # Run roux
-    actual=$(cd "$ROUX" && npx tsx src/cli.ts "$analysis" -l "$abs_log" -n 1 -m 1 -i 1 -s 1000 2>/dev/null || echo "ERROR")
-
-    run_comparison "$label" "$expected" "$actual" "$logname" "$analysis"
+      run_comparison "$label" "$expected" "$actual" "${logname}_${set_name}" "$analysis"
+    done
   done
 done
 
