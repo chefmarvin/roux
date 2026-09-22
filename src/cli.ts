@@ -8,7 +8,7 @@ const program = new Command();
 program
   .name("roux")
   .description("Mine and analyze version control data")
-  .version("0.3.2");
+  .version("0.4.0");
 
 // Shared options for all analysis subcommands
 function addSharedOptions(cmd: Command): Command {
@@ -41,7 +41,11 @@ async function readStdin(): Promise<string | undefined> {
   for await (const chunk of process.stdin) {
     chunks.push(chunk);
   }
-  return Buffer.concat(chunks).toString("utf-8");
+  // Nothing piped in is "no input", not "an empty log". Anything running
+  // roux from a script has a non-TTY stdin that stays empty, and reporting
+  // that as an empty history would make -l and --repo silently ignored.
+  const text = Buffer.concat(chunks).toString("utf-8");
+  return text === "" ? undefined : text;
 }
 
 // Register a subcommand for each analysis

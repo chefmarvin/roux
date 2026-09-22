@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.4.0
+
+### Added
+
+- **Group definitions can be passed inline.** `analyze({ groups: "src/api => API\n..." })`
+  takes the same syntax as a group file, for callers that build the mapping
+  in code rather than keeping it on disk. The CLI continues to use `-g`.
+
+### Fixed
+
+- **The CLI returned nothing when run from a script.** 0.3.2 started
+  treating an empty `input` as an empty history, which was right for the
+  programmatic API but wrong for the CLI: a non-TTY stdin reads as an empty
+  string, so `-l` and `--repo` were silently ignored and every run printed
+  only a header. Interactive use was unaffected, which is why it went
+  unnoticed. Anything driving roux from a script should skip 0.3.2.
+
 ## 0.3.2
 
 ### Fixed

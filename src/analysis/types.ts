@@ -10,6 +10,13 @@ export interface AnalysisOptions {
   ageTimeNow?: string;          // -d flag, "YYYY-MM-DD"
   expressionToMatch?: string;   // -e flag, regex pattern
   groupFile?: string;           // -g flag, path to group spec
+  /**
+   * Group definitions given directly, in the same syntax as a group file:
+   * one `path => name` per line, where a path wrapped in ^...$ is a regex
+   * and anything else is a prefix. For callers that build the mapping in
+   * code rather than keeping it on disk; the CLI uses groupFile instead.
+   */
+  groups?: string;
   teamMapFile?: string;         // -p flag, path to team CSV
   temporalPeriod?: number;      // -t flag, days in sliding window
   outputFormat?: "csv" | "json"; // -o flag

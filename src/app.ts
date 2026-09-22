@@ -5,7 +5,7 @@ import { defaultOptions, type AnalysisOptions } from "./analysis/types.js";
 import { toCSV } from "./output/csv.js";
 import { toJSON } from "./output/json.js";
 import { generateGitLog } from "./git.js";
-import { parseGroupConfig, applyGrouping } from "./transforms/grouper.js";
+import { parseGroupConfig, parseGroupText, applyGrouping } from "./transforms/grouper.js";
 import { parseTeamConfig, applyTeamMapping } from "./transforms/team-mapper.js";
 import { applyTemporalGrouping } from "./transforms/temporal-grouper.js";
 import { applyRenameTracking } from "./transforms/rename-tracker.js";
@@ -57,9 +57,13 @@ export function run(opts: AppOptions): string {
     modifications = applyRenameTracking(modifications);
   }
 
-  if (options.groupFile) {
-    const specs = parseGroupConfig(options.groupFile);
-    modifications = applyGrouping(modifications, specs);
+  const groupSpecs = opts.groups !== undefined
+    ? parseGroupText(opts.groups)
+    : options.groupFile
+      ? parseGroupConfig(options.groupFile)
+      : undefined;
+  if (groupSpecs) {
+    modifications = applyGrouping(modifications, groupSpecs);
   }
   if (options.temporalPeriod) {
     modifications = applyTemporalGrouping(modifications, options.temporalPeriod);
