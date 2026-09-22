@@ -42,7 +42,10 @@ export function generateGitLog(opts: GitLogOptions = {}): string {
     if (idx !== -1) args.splice(idx, 1);
     args.push(opts.rev);
   }
-  return execSync(`git log ${args.join(" ")}`, {
+  // core.quotePath=false: git otherwise quotes and octal-escapes any path
+  // outside ASCII, and a quoted path matches no glob, no group definition
+  // and no listing of the working tree.
+  return execSync(`git -c core.quotePath=false log ${args.join(" ")}`, {
     cwd,
     encoding: "utf-8",
     maxBuffer: 100 * 1024 * 1024,

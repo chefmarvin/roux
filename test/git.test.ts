@@ -133,3 +133,31 @@ describe("date boundaries", () => {
     expect(extractDates(generateGitLog({ repo, before: BOUNDARY }))).toEqual([BOUNDARY]);
   });
 });
+
+describe("paths git would quote", () => {
+  let repo: string;
+
+  beforeEach(() => {
+    repo = mkdtempSync(join(tmpdir(), "roux-quoted-"));
+    const git = (...args: string[]) =>
+      execFileSync("git", args, { cwd: repo, stdio: "ignore" });
+    git("init", "-q");
+    git("config", "user.email", "t@e.com");
+    git("config", "user.name", "T");
+    writeFileSync(join(repo, "说明.ts"), "const a = 1;\n");
+    git("add", "-A");
+    git("commit", "-m", "add");
+  });
+
+  afterEach(() => rmSync(repo, { recursive: true, force: true }));
+
+  // git quotes and octal-escapes any path outside ASCII by default, which
+  // no consumer of the log expects: a quoted path matches no glob, no
+  // group definition and no listing of the working tree.
+  test("records a non-ASCII path as it is on disk", () => {
+    const log = generateGitLog({ repo });
+
+    expect(log).toContain("说明.ts");
+    expect(log).not.toContain("\\346");
+  });
+});
