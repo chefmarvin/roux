@@ -35,12 +35,21 @@ function couplingFrequencies(
   return freqs;
 }
 
-/** Count total revisions per entity */
-function revisionsByEntity(data: Modification[]): Map<string, number> {
-  const byEntity = groupBy(data, "entity");
+/**
+ * Count revisions per entity, over the revisions that survived the
+ * changeset-size filter. code-maat drops an oversized changeset before it
+ * counts revisions (coupling_algos.clj: co-changing-by-revision removes it,
+ * module-by-revs then counts what is left), so a sweeping commit must not
+ * inflate an entity's revision count and dilute its coupling degree.
+ */
+function revisionsByEntity(
+  byRevision: Map<string, string[]>
+): Map<string, number> {
   const result = new Map<string, number>();
-  for (const [entity, mods] of byEntity) {
-    result.set(entity as string, new Set(mods.map((m) => m.rev)).size);
+  for (const entities of byRevision.values()) {
+    for (const entity of entities) {
+      result.set(entity, (result.get(entity) ?? 0) + 1);
+    }
   }
   return result;
 }
@@ -51,7 +60,7 @@ export function coupling(
 ): Record<string, unknown>[] {
   const byRevision = entitiesByRevision(data, options.maxChangesetSize);
   const freqs = couplingFrequencies(byRevision);
-  const revsByEntity = revisionsByEntity(data);
+  const revsByEntity = revisionsByEntity(byRevision);
   const result: Record<string, unknown>[] = [];
 
   for (const [key, sharedRevs] of freqs) {
@@ -66,8 +75,11 @@ export function coupling(
       sharedRevs >= options.minSharedRevs &&
       degree >= options.minCoupling &&
       degree <= options.maxCoupling &&
-      revs1 >= options.minRevs &&
-      revs2 >= options.minRevs
+      // code-maat thresholds on the pair's average revisions, not on each
+      // entity separately (logical_coupling.clj passes average-revs to
+      // within-threshold?). Requiring both would drop pairs where a stable
+      // module is dragged along by a churning one.
+      avgRevs >= options.minRevs
     ) {
       result.push({
         entity: e1,
@@ -85,13 +97,15 @@ export function sumOfCoupling(
   data: Modification[],
   options: AnalysisOptions
 ): Record<string, unknown>[] {
-  // SOC uses non-deduplicated entities per revision (matches code-maat row-level counting)
+  // SOC uses non-deduplicated entities per revision (matches code-maat row-level counting).
+  // It also counts every revision: code-maat applies the changeset-size filter
+  // only in co-changing-by-revision, which the soc analysis does not call
+  // (sum_of_coupling.clj defines its own entities-by-revision without it).
   const byRev = groupBy(data, "rev");
   const soc = new Map<string, number>();
 
   for (const [, mods] of byRev) {
     const entities = mods.map((m) => m.entity);
-    if (entities.length > options.maxChangesetSize) continue;
     for (const entity of entities) {
       soc.set(entity, (soc.get(entity) ?? 0) + (entities.length - 1));
     }

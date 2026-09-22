@@ -139,6 +139,24 @@ cat git.log | npx roux summary
 | `-x, --max-coupling <n>`       | Maximum coupling percentage / 最高耦合百分比                      | 100              |
 | `-s, --max-changeset-size <n>` | Ignore commits touching more files / 忽略涉及文件数超过此值的提交 | 30               |
 
+These thresholds exist to denoise the coupling analyses, and they apply only
+where code-maat applies them:
+
+这些阈值用于给耦合分析降噪，作用范围与 code-maat 一致：
+
+| Threshold / 阈值        | Applies to / 作用于                                      |
+|-------------------------|----------------------------------------------------------|
+| `--min-revs`            | `coupling` (on the pair's average), `soc`                |
+| `--min-shared-revs`     | `coupling`                                               |
+| `--min-coupling` / `--max-coupling` | `coupling`                                   |
+| `--max-changeset-size`  | `coupling` only — `soc` counts every changeset           |
+
+Descriptive listings such as `revisions` and `authors` report every entity;
+they are sorted descending, so low-frequency files sink to the bottom rather
+than being dropped.
+
+`revisions`、`authors` 这类描述性列表会返回全部条目 — 结果按降序排列，低频文件自然沉底，不会被丢弃。
+
 ### Transforms / 数据变换
 
 | Flag                           | Description / 说明                                                     |

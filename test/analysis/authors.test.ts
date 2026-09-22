@@ -10,4 +10,13 @@ describe("authors", () => {
       { entity: "B", "n-authors": 1, "n-revs": 1 },
     ]);
   });
+
+  test("reports every entity regardless of the min-revs threshold", () => {
+    // Same as revisions: authors.clj/by-count ignores the options map.
+    const withThreshold = authors(vcs, { ...lowThresholds, minRevs: 99 });
+    const withoutThreshold = authors(vcs, lowThresholds);
+
+    expect(withThreshold).toEqual(withoutThreshold);
+    expect(withThreshold.length).toBeGreaterThan(0);
+  });
 });

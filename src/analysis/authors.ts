@@ -9,16 +9,14 @@ export function authors(
   const byEntity = groupBy(data, "entity");
   const result: Record<string, unknown>[] = [];
 
+  // No min-revs filter here, matching code-maat: authors.clj/by-count takes
+  // an options map and never reads it.
   for (const [entity, mods] of byEntity) {
-    const uniqueAuthors = new Set(mods.map((m) => m.author));
-    const nRevs = mods.length;
-    if (nRevs >= options.minRevs) {
-      result.push({
-        entity: entity as string,
-        "n-authors": uniqueAuthors.size,
-        "n-revs": nRevs,
-      });
-    }
+    result.push({
+      entity: entity as string,
+      "n-authors": new Set(mods.map((m) => m.author)).size,
+      "n-revs": mods.length,
+    });
   }
 
   return orderBy(result, "n-authors", "desc");
