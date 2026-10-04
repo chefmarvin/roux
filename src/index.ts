@@ -2,7 +2,7 @@
 export { run as analyze } from "./app.js";
 export type { AppOptions } from "./app.js";
 export { parseGit2Log as parseGitLog } from "./parsers/git2.js";
-export { generateGitLog } from "./git.js";
+export { generateGitLog, gitLogArgs } from "./git.js";
 export type { GitLogOptions } from "./git.js";
 export { analyses } from "./analysis/index.js";
 export type { Modification } from "./parsers/types.js";

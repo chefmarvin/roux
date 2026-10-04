@@ -4,6 +4,7 @@ import { mkdtempSync, writeFileSync, rmSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 import { generateGitLog } from "../src/git";
+import { parseGit2Log } from "../src/parsers/git2";
 
 const REPO = process.env.CODE_MAAT_REPO ?? `${process.env.HOME}/Documents/github/code-maat`;
 
@@ -159,5 +160,79 @@ describe("paths git would quote", () => {
 
     expect(log).toContain("说明.ts");
     expect(log).not.toContain("\\346");
+  });
+});
+
+describe("what generateGitLog writes, parseGit2Log reads", () => {
+  let repo: string;
+
+  const git = (...args: string[]) => execFileSync("git", args, { cwd: repo, stdio: "ignore" });
+
+  const commit = (date: string, subject: string, write: () => void) => {
+    write();
+    git("add", "-A");
+    execFileSync("git", ["commit", "-m", subject], {
+      cwd: repo,
+      stdio: "ignore",
+      env: { ...process.env, GIT_AUTHOR_DATE: `${date}T12:00:00`, GIT_COMMITTER_DATE: `${date}T12:00:00` },
+    });
+  };
+
+  beforeEach(() => {
+    repo = mkdtempSync(join(tmpdir(), "roux-roundtrip-"));
+    git("init", "-q", "-b", "main");
+    git("config", "user.email", "alice@e.com");
+    git("config", "user.name", "Alice");
+    commit("2026-01-05", "first commit", () => writeFileSync(join(repo, "a.ts"), "one\ntwo\n"));
+    commit("2026-01-06", "grow it", () => writeFileSync(join(repo, "a.ts"), "one\ntwo\nthree\n"));
+  });
+
+  afterEach(() => rmSync(repo, { recursive: true, force: true }));
+
+  // The format string lives in git.ts and the code that takes it apart
+  // lives in parsers/git2.ts. Nothing had ever held the two together, so
+  // the quotes the shell used to eat were invisible either way.
+  test("round-trips every field of a commit", () => {
+    const parsed = parseGit2Log(generateGitLog({ repo }));
+
+    expect(parsed).toEqual([
+      {
+        rev: expect.stringMatching(/^[0-9a-f]+$/),
+        entity: "a.ts",
+        author: "Alice",
+        date: "2026-01-06",
+        message: "grow it",
+        locAdded: 1,
+        locDeleted: 0,
+      },
+      {
+        rev: expect.stringMatching(/^[0-9a-f]+$/),
+        entity: "a.ts",
+        author: "Alice",
+        date: "2026-01-05",
+        message: "first commit",
+        locAdded: 2,
+        locDeleted: 0,
+      },
+    ]);
+  });
+
+  test("leaves no quoting around the fields", () => {
+    // The format was written for a shell, which ate the quotes it needed.
+    // Run without one and they would arrive as part of the data.
+    const log = generateGitLog({ repo });
+
+    expect(log).not.toContain("'--");
+    expect(log.split("\n")[0]).toMatch(/^--[0-9a-f]+--2026-01-06--Alice--grow it$/);
+  });
+
+  test("a subject containing the delimiter still parses", () => {
+    commit("2026-01-07", "fix -- really -- this time", () =>
+      writeFileSync(join(repo, "b.ts"), "x\n"),
+    );
+
+    const parsed = parseGit2Log(generateGitLog({ repo }));
+
+    expect(parsed[0]).toMatchObject({ entity: "b.ts", author: "Alice" });
   });
 });

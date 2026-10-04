@@ -1,4 +1,4 @@
-import { execSync } from "child_process";
+import { execFileSync } from "child_process";
 
 export interface GitLogOptions {
   repo?: string;
@@ -27,12 +27,30 @@ function endOfDay(date: string): string {
   return DATE_ONLY.test(date) ? `${date}T23:59:59` : date;
 }
 
-export function generateGitLog(opts: GitLogOptions = {}): string {
-  const cwd = opts.repo ?? process.cwd();
+/**
+ * The whole git invocation, as an argument list.
+ *
+ * One definition of how to ask git for a history, exported so a caller
+ * that wants to run it some other way — through a different runner, over
+ * a connection, with its own range appended — does not have to assemble a
+ * second copy. A second copy is how the format string and the parser come
+ * to disagree, and they sit in the same package precisely so they cannot.
+ *
+ * core.quotePath=false because git otherwise quotes and octal-escapes any
+ * path outside ASCII, and a quoted path matches no glob, no group
+ * definition and no listing of a working tree.
+ *
+ * The pretty format carries no quotes of its own: these arguments are
+ * handed to git directly, and a shell's quotes would arrive as part of
+ * the data.
+ */
+export function gitLogArgs(opts: GitLogOptions = {}): string[] {
   const followRenames = opts.followRenames !== false;
   const args = [
+    "-c", "core.quotePath=false",
+    "log",
     "--all", "--numstat", "--date=short",
-    "--pretty=format:'--%h--%ad--%aN--%s'",
+    "--pretty=format:--%h--%ad--%aN--%s",
     followRenames ? "-M" : "--no-renames",
   ];
   if (opts.after)  args.push(`--after=${startOfDay(opts.after)}`);
@@ -42,11 +60,12 @@ export function generateGitLog(opts: GitLogOptions = {}): string {
     if (idx !== -1) args.splice(idx, 1);
     args.push(opts.rev);
   }
-  // core.quotePath=false: git otherwise quotes and octal-escapes any path
-  // outside ASCII, and a quoted path matches no glob, no group definition
-  // and no listing of the working tree.
-  return execSync(`git -c core.quotePath=false log ${args.join(" ")}`, {
-    cwd,
+  return args;
+}
+
+export function generateGitLog(opts: GitLogOptions = {}): string {
+  return execFileSync("git", gitLogArgs(opts), {
+    cwd: opts.repo ?? process.cwd(),
     encoding: "utf-8",
     maxBuffer: 100 * 1024 * 1024,
   });
