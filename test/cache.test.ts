@@ -1,7 +1,7 @@
 import { describe, test, expect, beforeEach, afterEach } from "@jest/globals";
 import { execFileSync } from "child_process";
 import { mkdtempSync, writeFileSync, readFileSync, rmSync, existsSync, readdirSync } from "fs";
-import { tmpdir } from "os";
+import { homedir, tmpdir } from "os";
 import { join } from "path";
 import { generateGitLog } from "../src/git";
 import { cacheLocation } from "../src/cache";
@@ -270,5 +270,15 @@ describe("cached logs", () => {
       expect(existsSync(location)).toBe(true);
       expect(readdirSync(cacheDir).filter((n) => !n.endsWith(".log"))).toEqual([]);
     });
+  });
+});
+
+describe("the suite's own footprint", () => {
+  test("writes nowhere near the cache of whoever ran it", () => {
+    // Caching is off by default and these tests name their own directory,
+    // so nothing should reach the real one. The redirect is what makes
+    // that true of tests not written yet.
+    expect(process.env.XDG_CACHE_HOME).toBeDefined();
+    expect(cacheLocation({ repo: "/somewhere/else" })).not.toContain(join(homedir(), ".cache"));
   });
 });
