@@ -20,9 +20,10 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run build && npm test && npm run acceptance",
     "test": "node --experimental-vm-modules node_modules/.bin/jest",
-    "start": "tsx src/cli.ts"
+    "start": "tsx src/cli.ts",
+    "acceptance": "bash test/acceptance/run.sh"
   },
   "keywords": [
     "git",

@@ -1,12 +1,20 @@
 import { describe, test, expect, beforeEach, afterEach } from "@jest/globals";
 import { execFileSync } from "child_process";
-import { mkdtempSync, writeFileSync, rmSync } from "fs";
+import { existsSync, mkdtempSync, writeFileSync, rmSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
-import { generateGitLog } from "../src/git";
+import { generateGitLog, gitLogArgs } from "../src/git";
 import { parseGit2Log } from "../src/parsers/git2";
 
+/**
+ * code-maat's repository: a decade of real history with tags, which is
+ * what these cases were written against — specific dates, a v1.0..v1.0.4
+ * range. Nothing else to hand has that shape, so where it is absent
+ * these stand aside rather than being rewritten into something weaker.
+ */
 const REPO = process.env.CODE_MAAT_REPO ?? `${process.env.HOME}/Documents/github/code-maat`;
+const hasRepo = existsSync(join(REPO, ".git"));
+const whenPresent = hasRepo ? describe : describe.skip;
 
 // Matches commit header lines: --hash--YYYY-MM-DD--author--subject
 const DATE_RE = /--\w+--(\d{4}-\d{2}-\d{2})--/g;
@@ -15,7 +23,7 @@ function extractDates(log: string): string[] {
   return [...log.matchAll(DATE_RE)].map(m => m[1]);
 }
 
-describe("generateGitLog", () => {
+whenPresent("generateGitLog, against a repository with a long history", () => {
   test("generates log from repo (no filters)", () => {
     const log = generateGitLog({ repo: REPO });
     expect(log.length).toBeGreaterThan(0);
@@ -234,5 +242,63 @@ describe("what generateGitLog writes, parseGit2Log reads", () => {
     const parsed = parseGit2Log(generateGitLog({ repo }));
 
     expect(parsed[0]).toMatchObject({ entity: "b.ts", author: "Alice" });
+  });
+});
+
+describe("gitLogArgs", () => {
+  // Everything the command states outright, so that a repository's own
+  // config cannot move it, and every combination the caller can ask for.
+  test("always pins the things config could otherwise change", () => {
+    expect(gitLogArgs()).toEqual(
+      expect.arrayContaining([
+        "-c",
+        "core.quotePath=false",
+        "--date=short",
+        "--pretty=format:--%h--%ad--%aN--%s",
+      ]),
+    );
+  });
+
+  test("follows renames unless told not to", () => {
+    expect(gitLogArgs()).toContain("-M");
+    expect(gitLogArgs({ followRenames: true })).toContain("-M");
+    expect(gitLogArgs({ followRenames: false })).toContain("--no-renames");
+    expect(gitLogArgs({ followRenames: false })).not.toContain("-M");
+  });
+
+  test("covers every ref when no revision is named", () => {
+    expect(gitLogArgs()).toContain("--all");
+  });
+
+  test("a named revision replaces every ref rather than joining them", () => {
+    // --all and a range together would widen the range back out.
+    const args = gitLogArgs({ rev: "v1.0..v2.0" });
+
+    expect(args).not.toContain("--all");
+    expect(args).toContain("v1.0..v2.0");
+  });
+
+  test("pins a bare date to the edge of its day", () => {
+    expect(gitLogArgs({ after: "2026-01-05" })).toContain("--after=2026-01-05T00:00:00");
+    expect(gitLogArgs({ before: "2026-01-05" })).toContain("--before=2026-01-05T23:59:59");
+  });
+
+  test("leaves a date that already carries a time alone", () => {
+    expect(gitLogArgs({ after: "2026-01-05T09:30:00" })).toContain("--after=2026-01-05T09:30:00");
+  });
+
+  test("takes both ends of a range at once", () => {
+    const args = gitLogArgs({ after: "2026-01-01", before: "2026-01-31" });
+
+    expect(args).toContain("--after=2026-01-01T00:00:00");
+    expect(args).toContain("--before=2026-01-31T23:59:59");
+  });
+
+  test("a range and a revision together keep the revision", () => {
+    const args = gitLogArgs({ after: "2026-01-01", rev: "main" });
+
+    expect(args).not.toContain("--all");
+    expect(args).toContain("main");
+    expect(args).toContain("--after=2026-01-01T00:00:00");
   });
 });

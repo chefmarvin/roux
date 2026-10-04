@@ -3,8 +3,23 @@
 # Acceptance test: compare roux vs code-maat output for all analyses and log files
 set -euo pipefail
 
-CODE_MAAT=~/Documents/github/code-maat
-ROUX=~/Documents/github/roux
+CODE_MAAT=${CODE_MAAT:-~/Documents/github/code-maat}
+ROUX=${ROUX:-$(cd "$(dirname "$0")/../.." && pwd)}
+
+# This suite is a comparison, so without the thing it compares against it
+# has nothing to say. Say so and stand aside, rather than reporting 221
+# failures that are really one missing checkout — and rather than passing
+# quietly, which would let a release go out on a comparison nobody made.
+if ! command -v lein >/dev/null 2>&1; then
+  echo "SKIP: leiningen is not installed, so there is no code-maat to compare against."
+  echo "      Install it, or set CODE_MAAT to a checkout, to run these 221 comparisons."
+  exit 0
+fi
+if [ ! -d "$CODE_MAAT" ]; then
+  echo "SKIP: no code-maat checkout at $CODE_MAAT."
+  echo "      Clone https://github.com/adamtornhill/code-maat there, or set CODE_MAAT."
+  exit 0
+fi
 # Standard analyses (no extra flags needed)
 ANALYSES=(
   "summary" "authors" "revisions" "coupling" "soc"

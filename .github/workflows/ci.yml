@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+
+      # The 221 comparisons against code-maat need a Clojure toolchain and
+      # a checkout of it, which this job does not have — the script says so
+      # and stands aside. They run on the publish path instead, where the
+      # person releasing does have both. This step is here so that the log
+      # records which of the two happened.
+      - run: npm run acceptance

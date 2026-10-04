@@ -1,4 +1,7 @@
 import { describe, test, expect } from "@jest/globals";
+import { existsSync } from "fs";
+import { join } from "path";
+
 import { analyze, parseGitLog, analyses } from "../src";
 import type { GitLogOptions } from "../src";
 
@@ -31,8 +34,13 @@ describe("programmatic API", () => {
     expect(opts.after).toBe("2024-01-01");
   });
 
-  describe("analyze with git log filters", () => {
-    const REPO = process.env.CODE_MAAT_REPO ?? `${process.env.HOME}/Documents/github/code-maat`;
+  // Dated against code-maat's own decade of history, so where that
+  // checkout is absent these stand aside rather than being rewritten
+  // around whatever history happens to be nearby.
+  const REPO = process.env.CODE_MAAT_REPO ?? `${process.env.HOME}/Documents/github/code-maat`;
+  const whenPresent = existsSync(join(REPO, ".git")) ? describe : describe.skip;
+
+  whenPresent("analyze with git log filters", () => {
 
     test("analyze passes --after filter", () => {
       const result = analyze({
