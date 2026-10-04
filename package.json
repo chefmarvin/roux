@@ -1,6 +1,6 @@
 {
   "name": "@donativo/roux",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Mine and analyze git history — find hotspots, coupling, ownership patterns, and team dynamics",
   "type": "module",
   "bin": {

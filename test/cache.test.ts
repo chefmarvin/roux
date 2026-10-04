@@ -227,6 +227,32 @@ describe("cached logs", () => {
     });
   });
 
+  describe("a repository with nothing in it", () => {
+    test("has no history to cache", () => {
+      const empty = mkdtempSync(join(tmpdir(), "roux-empty-"));
+      const emptyCache = mkdtempSync(join(tmpdir(), "roux-empty-cache-"));
+      execFileSync("git", ["init", "-q"], { cwd: empty, stdio: "ignore" });
+
+      expect(generateGitLog({ repo: empty, cache: true, cacheDir: emptyCache })).toBe("");
+
+      rmSync(empty, { recursive: true, force: true });
+      rmSync(emptyCache, { recursive: true, force: true });
+    });
+
+    test("reads back the nothing it wrote", () => {
+      const empty = mkdtempSync(join(tmpdir(), "roux-empty2-"));
+      const emptyCache = mkdtempSync(join(tmpdir(), "roux-empty2-cache-"));
+      execFileSync("git", ["init", "-q"], { cwd: empty, stdio: "ignore" });
+
+      generateGitLog({ repo: empty, cache: true, cacheDir: emptyCache });
+
+      expect(generateGitLog({ repo: empty, cache: true, cacheDir: emptyCache })).toBe("");
+
+      rmSync(empty, { recursive: true, force: true });
+      rmSync(emptyCache, { recursive: true, force: true });
+    });
+  });
+
   describe("the file on disk", () => {
     test("is left alone when it is in a format we no longer write", () => {
       writeFileSync(cacheLocation({ repo, cacheDir }), "something older\n1\t0\tz.ts\n");
