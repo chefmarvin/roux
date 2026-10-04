@@ -1,11 +1,24 @@
 import { execFileSync } from "child_process";
 
+import { maybeCachedLog } from "./cache.js";
+
 export interface GitLogOptions {
   repo?: string;
   after?: string;        // --after=2024-01-01
   before?: string;       // --before=2025-01-01
   rev?: string;          // v1.0..v2.0
   followRenames?: boolean; // true (default) → -M, false → --no-renames
+  /**
+   * Reuse the log cached from an earlier run, asking git only for what
+   * has happened since. Off by default: a library should not start
+   * writing to somebody's disk because it was convenient.
+   *
+   * Only a whole history is cached. Asking for a range or a revision
+   * goes straight to git.
+   */
+  cache?: boolean;
+  /** Where cached logs live. Defaults to the user's cache directory. */
+  cacheDir?: string;
 }
 
 const DATE_ONLY = /^\d{4}-\d{2}-\d{2}$/;
@@ -64,7 +77,7 @@ export function gitLogArgs(opts: GitLogOptions = {}): string[] {
 }
 
 export function generateGitLog(opts: GitLogOptions = {}): string {
-  return execFileSync("git", gitLogArgs(opts), {
+  return maybeCachedLog(opts) ?? execFileSync("git", gitLogArgs(opts), {
     cwd: opts.repo ?? process.cwd(),
     encoding: "utf-8",
     maxBuffer: 100 * 1024 * 1024,
